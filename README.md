@@ -13,19 +13,36 @@ This repository includes:
 
 ## Installation
 
-We have compiled a list of all the necessary software dependencies and their specified versions in `requirements.txt`. After installing Python (we recommend version 3.11), these dependencies can be installed automatically by executing:
+We have compiled a list of all the necessary software dependencies and their specified versions in `requirements.txt` except **Flash Attention**. After installing Python (we recommend version 3.10), these dependencies can be installed automatically by executing:
 
 ```
 pip install -r requirements.txt
 ```
 
-**Note:** To ensure the import paths are correct, set the `PYTHONPATH` environment variable to the root directory of our repository:
+Then, you need to install **Flash Attention**:
 
 ```
-export PYTHONPATH=<root_directory>
+pip install flash-attn --no-build-isolation
+```
+
+
+Finally, you can install Jenga from source:
+
+```
+pip install -e .
 ```
 
 ## Getting Start
+
+### 1.Hello-world example
+To ensure the installation is complete, you can run a hello-world example that fine-tunes LLaMA with **Jenga** for one step. 
+```
+scripts/hello_worls.sh
+```
+It will run for approximately 10 seconds and, on success, output something like below:
+
+
+
 
 Please note that reproducing all the original experiments requires strict hardware requirements: at least 1 NVIDIA A100 GPU is necessary. For reproducing experiments on scalability, 4 NVIDIA A6000 GPUs are required. To accommodate hardware limitations, we have prepared two scripts. One for quick reproduction, which plots figures from the raw data of our experiments on NVIDIA A100, and another for in-depth reproduction, which plots based on data generated from an actual run.
 
