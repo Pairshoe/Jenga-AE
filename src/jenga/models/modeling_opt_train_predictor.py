@@ -308,7 +308,7 @@ class OptFlashAttention2(OPTAttention):
         hidden_states_ = hidden_states.clone()
         
         predict_attn = self.predictor(hidden_states_)
-
+        predict_attn /= 100
         # get query proj
         query_states = self.q_proj(hidden_states)
         # get key, value proj
@@ -351,15 +351,15 @@ class OptFlashAttention2(OPTAttention):
         value_states = value_states.transpose(1, 2).view(bsz, tgt_len, self.num_heads, self.head_dim)
         
         with torch.no_grad():
-            # attn_maxpool = block_attn_pool(query_states.transpose(1,2).contiguous(), key_states.transpose(1,2).transpose(2,3).contiguous())
-            q1 = query_states.transpose(1,2)
-            k1 = key_states.transpose(1,2).transpose(2,3)
-            attn = torch.matmul(q1, k1) / (self.head_dim ** 0.5)
-            attn = nn.functional.relu(attn)
-            attn = attn.sum(dim=1)
-            attn = nn.functional.max_pool2d(attn, kernel_size=64, stride=64)
-            attn_maxpool = attn
-            attn_maxpool /= 32
+            attn_maxpool = block_attn_pool(query_states.transpose(1,2).contiguous(), key_states.transpose(1,2).transpose(2,3).contiguous())
+            # q1 = query_states.transpose(1,2)
+            # k1 = key_states.transpose(1,2).transpose(2,3)
+            # attn = torch.matmul(q1, k1) / (self.head_dim ** 0.5)
+            # attn = nn.functional.relu(attn)
+            # attn = attn.sum(dim=1)
+            # attn = nn.functional.max_pool2d(attn, kernel_size=64, stride=64)
+            # attn_maxpool = attn
+            attn_maxpool /= 64
             
         attn_dropout = self.dropout if self.training else 0.0
 

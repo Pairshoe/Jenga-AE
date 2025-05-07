@@ -9,7 +9,7 @@ from transformers import AutoTokenizer, DataCollatorForLanguageModeling
 
 from jenga.models.modeling_opt_train_predictor import (
     OPTForCausalLM, OPTLearnedPositionalEmbedding)
-from jenga.models.predictor import DynamicPruningPredictorTrainer
+from jenga.trainer.predictor_trainer import DynamicPruningPredictorTrainer
 from jenga.utils.config_utils import get_opt_qk
 from jenga.utils.others import (seed_everything,
                                 smart_tokenizer_and_embedding_resize)
@@ -124,7 +124,7 @@ def train():
     )
     
     
-    dataset = load_dataset("../datasets/RedPajama-Data-1T-Sample", cache_dir=training_args.cache_dir,trust_remote_code=True)
+    dataset = load_dataset("dataset/RedPajama-Data-1T-Sample", cache_dir=training_args.cache_dir,trust_remote_code=True)
     train_dataset = dataset['train']
     small_train_dataset = train_dataset.select(range(1000))
 
