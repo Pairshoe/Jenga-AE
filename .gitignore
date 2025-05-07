@@ -17,5 +17,6 @@ checkpoints/
 dataset/
 *.pickle
 .vscode/
+logs/
 
 

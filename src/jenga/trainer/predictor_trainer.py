@@ -124,7 +124,7 @@ class DynamicPruningPredictorTrainer(PredictorTrainer):
         # 每隔 self.prune_interval 步，对 predictor 执行一次剪枝
         if step > 0 and (step % self.prune_interval == 0) and step < 620:
             times = step // self.prune_interval
-            thresh  = self.zero_ratio_threshold - (times - 1)*0.1
+            thresh  = self.zero_ratio_threshold - (times - 1)*0.05
             for module_name, module in model.named_modules():
                 if isinstance(module, PrunableAttnPredictor):
                     module.prune_neurons(
