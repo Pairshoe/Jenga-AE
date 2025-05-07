@@ -1,0 +1,27 @@
+original_num_embeddings: 2048
+original_embed_positions: torch.Size([2050, 1024])
+[2025-05-05 23:35:59,266] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+before forward allocaiton: 847.43896484375, peak memory: 847.43896484375, reserve: 856.0
+after forward allocaiton: 54378.76953125, peak memory: 54378.76953125, reserve: 54974.0
+before backward allocaiton: 45780.76953125, peak memory: 54378.76953125, reserve: 54974.0
+after backward allocaiton: 869.689453125, peak memory: 47196.8955078125, reserve: 54974.0
+before step allocaiton: 869.68994140625, peak memory: 869.6923828125, reserve: 54974.0
+after step allocaiton: 881.68994140625, peak memory: 887.68994140625, reserve: 54974.0
+before forward allocaiton: 875.68994140625, peak memory: 881.68994140625, reserve: 54974.0
+after forward allocaiton: 54398.8955078125, peak memory: 54398.8955078125, reserve: 54986.0
+before backward allocaiton: 45800.8955078125, peak memory: 54398.8955078125, reserve: 54986.0
+after backward allocaiton: 881.6904296875, peak memory: 47208.896484375, reserve: 54986.0
+before step allocaiton: 881.68994140625, peak memory: 881.69287109375, reserve: 54986.0
+after step allocaiton: 881.68994140625, peak memory: 887.68994140625, reserve: 54986.0
+before forward allocaiton: 875.68994140625, peak memory: 881.68994140625, reserve: 54986.0
+after forward allocaiton: 54398.8955078125, peak memory: 54398.8955078125, reserve: 54986.0
+before backward allocaiton: 45800.8955078125, peak memory: 54398.8955078125, reserve: 54986.0
+after backward allocaiton: 881.6904296875, peak memory: 47208.896484375, reserve: 54986.0
+before step allocaiton: 881.68994140625, peak memory: 881.69287109375, reserve: 54986.0
+after step allocaiton: 881.68994140625, peak memory: 887.68994140625, reserve: 54986.0
+before forward allocaiton: 875.68994140625, peak memory: 881.68994140625, reserve: 54986.0
+after forward allocaiton: 54398.8955078125, peak memory: 54398.8955078125, reserve: 54986.0
+before backward allocaiton: 45800.8955078125, peak memory: 54398.8955078125, reserve: 54986.0
+after backward allocaiton: 881.6904296875, peak memory: 47208.896484375, reserve: 54986.0
+before step allocaiton: 881.68994140625, peak memory: 881.69287109375, reserve: 54986.0
+after step allocaiton: 881.68994140625, peak memory: 887.68994140625, reserve: 54986.0

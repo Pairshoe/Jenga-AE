@@ -1,0 +1,5 @@
+[2025-05-06 16:58:08,892] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+forward time: 11393.568359375, backward time: 33086.3046875, optimizer step time: 45.97043228149414, total time: 44525.843479156494
+forward time: 11283.412109375, backward time: 33155.55078125, optimizer step time: 4.355072021484375, total time: 44443.317962646484
+forward time: 11314.8310546875, backward time: 33221.0546875, optimizer step time: 4.64793586730957, total time: 44540.53367805481
+forward time: 11336.4794921875, backward time: 33245.91015625, optimizer step time: 4.646912097930908, total time: 44587.03656053543

@@ -9,6 +9,6 @@ bash scripts/ablation-mem-breakdown/llama-jenga.sh llama2 16384
 
 
 mkdir -p output_figures/ablations/memory-breakdown
-
+python src/experiment/ablation/memory-breakdown/plot.py
 
 

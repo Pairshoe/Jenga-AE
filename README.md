@@ -6,8 +6,8 @@ This repository includes:
 
 - **Checkpoints (`checkpoints/`):** The fine-tuned model weights for accuracy validation.
 - **Dataset (`dataset/`):** The cleaned E2E dataset used for performance evaluation.
-- **Log Files and Plotting Scripts (`logs/` and `plotting/`):** Files and scripts used for generating the figures in the paper.
-- **Reproduced Figures (`output_figures/`):** Output directory of reproduced figures. We have provided figures (prefixed with `ref_`) in this directory that were reproduced for reference.
+- **Log Files  (`logs/` ):** Experiment logs used for generating the figures in the paper.
+- **Reproduced Figures (`output_figures/`):** Output directory of reproduced figures. We have provided figures (prefixed with `exp-`) in this directory that were reproduced for reference.
 - **Source Code (`src/`):** The core implementation of Long Exposure.
 - **Experiment Scripts (`scripts/`):** Ready-to-use scripts for running experiments corresponding to each figure and table in the paper.
 
@@ -44,7 +44,7 @@ It will run for approximately 10 seconds and, on success, output something like 
 
 
 
-Please note that reproducing all the original experiments requires strict hardware requirements: at least 1 NVIDIA A100 GPU is necessary. For reproducing experiments on scalability, 4 NVIDIA A6000 GPUs are required. To accommodate hardware limitations, we have prepared two scripts. One for quick reproduction, which plots figures from the raw data of our experiments on NVIDIA A100, and another for in-depth reproduction, which plots based on data generated from an actual run.
+Please note that reproducing all the original experiments requires strict hardware requirements: except for the end-to-end speedup experiment, which was conducted on an A40 GPU, and the scalability experiment, which was conducted on four RTX 4090 GPUs, all other experiments were performed on a single A800 GPU.
 
 ### 1. Quick Reproduction: Plotting from Raw Data
 
@@ -58,37 +58,47 @@ To plot all figures in the evaluation section, execute the following command:
 bash RUNME-a.sh
 ```
 
-Once you have successfully run this command, all the figures will be stored in the directory `output_figures/`.
+Once you have successfully run this command,figures will be stored in the directory `output_figures/`.
 
 The RUNME-a.sh script reads the original log files, performs some post-processing, and plots the figures. The generated figures will be identical to those in the paper.
 
 The matching relationship between the names of the generated figures and those in the paper is:
 
-| Generated Figure Name | Corresponding Figure in the Paper |
+| Generated Figure Folder Name | Corresponding Figure in the Paper |
 | ---- | ---- |
-| exp-overall-end2end-a100.png | Figure 7 (Upper) |
-| exp-overall-memory-opt-350m.png | Figure 8 (Left) |
-| exp-overall-memory-opt-1.3b.png | Figure 8 (Right) |
-| exp-ablation-attn-sparsity.png | Figure 9 (Left Upper) |
-| exp-ablation-attn-time.png | Figure 9 (Right Upper) |
-| exp-ablation-mlp-sparsity.png | Figure 9 (Left Lower) |
-| exp-ablation-mlp-time.png | Figure 9 (Right Lower) |
-| exp-ablation-breakdown.png | Figure 10 |
-| exp-ablation-predictor.png | Figure 11 (Left) |
-| exp-ablation-operator-attn.png | Figure 12 (Left) |
-| exp-ablation-operator-mlp.png | Figure 12 (Right) |
-| exp-scale-model.png | Figure 13 |
+| end2end/memory | Figure 12 |
+| end2end/time | Figure 13|
+| ablations/memory-breakdown | Figure 14 (Upper) |
+| ablations/time-breakdown | Figure 14 (Lower) |
+| ablations/algorithm | Figure 15 |
+| ablations/predictor | Figure 16 (Left) |
+| extension/2d | Figure 19 (Upper) |
+| extension/2d | Figure 19 (Lower) |
+
+**Note:** To reproduce Figure 18, the script will generate two pickle files in the `logs/ablations/segment` directory. Simply drag these files into [memory_viz](https://docs.pytorch.org/memory_viz) to recreate the visualization.
+
 
 ### 2. In-depth Reproduction: Plotting from Actual Run
 
-> **Hardware requirements: 1 NVIDIA A100 GPU.**
->
-> **Estimated Time: about 1 hours.**
+1. **Figures Reproduction.**
 
-To reproduce all the experiments in the paper, execute the following command:
+To reproduce all the experiments in the paper, execute the following two commands on corresponding hardware platform:
+> **Hardware requirements: 1 NVIDIA A800 GPU.**
+>
+> **Estimated Time: about ? hours.**
+
 
 ```
-bash RUNME-b.sh
+bash RUNME-b-a800.sh
+```
+
+> **Hardware requirements: 1 NVIDIA A40 GPU.**
+>
+> **Estimated Time: about ? hours.**
+
+
+```
+bash RUNME-b-a40.sh
 ```
 
 Once you have successfully run this command, all the figures will be stored in the directory `output_figures/`.
@@ -97,25 +107,9 @@ Due to fluctuations in hardware performance, the generated figures may differ sl
 
 The matching relationship between the names of the generated figures and those in the paper is the same as the table above.
 
-**Note:** To shorten the reproduction time, we did not include Figure 11 and Table IV from the paper in the scripts, as they involve the entire fine-tuning process over the whole dataset. We also separated the reproduction of Figure 14 from the `RUNME-b.sh` because it requires a multi-GPU server with at least 4 NVIDIA A6000. However, we have prepared separate scripts for reproducing them.
 
-1. **Figure 11 Reproduction.**
 
-> **Hardware requirements: 1 NVIDIA A100 GPU.**
-> 
-> **Estimated Time: about 6 hours.**
-
-To reproduce Figure 11(Left), execute the following command:
-
-```
-bash ./scrips/ablation-predictor/run.sh
-```
-
-Once you have successfully run this command, you will get a figure with three loss curves stored in the directory `output_figures/`.
-
-We decided not to reproduce Figure 11 (Right) because it merely visualizes a few prediction results, while the accuracy of the predictor has already been demonstrated by Figure 11 (Left).
-
-2. **Table IV Reproduction.**
+2. **Table IV Reproduction.(TODO)**
 
 > **Hardware requirements: 1 NVIDIA A100 GPU.**
 > 

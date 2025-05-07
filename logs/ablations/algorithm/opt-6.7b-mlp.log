@@ -1,0 +1,35 @@
+original_num_embeddings: 2048
+original_embed_positions: torch.Size([2050, 4096])
+[2025-05-07 22:51:43,042] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+layer: 0, threshold: 0.0, memory: 0.13397216796875
+layer: 1, threshold: 0.0, memory: 0.013916015625
+layer: 2, threshold: 0.0, memory: 0.82122802734375
+layer: 3, threshold: 0.0, memory: 0.98846435546875
+layer: 4, threshold: 0.0, memory: 0.84625244140625
+layer: 5, threshold: 0.0, memory: 0.1182861328125
+layer: 6, threshold: 0.0, memory: 0.238037109375
+layer: 7, threshold: 0.0, memory: 0.2552490234375
+layer: 8, threshold: 0.0, memory: 0.13433837890625
+layer: 9, threshold: 0.0, memory: 0.17010498046875
+layer: 10, threshold: 0.0, memory: 0.1817626953125
+layer: 11, threshold: 0.0, memory: 0.2147216796875
+layer: 12, threshold: 0.0, memory: 0.26373291015625
+layer: 13, threshold: 0.0, memory: 0.3187255859375
+layer: 14, threshold: 0.0, memory: 0.32623291015625
+layer: 15, threshold: 0.0, memory: 0.296875
+layer: 16, threshold: 0.0, memory: 0.37347412109375
+layer: 17, threshold: 0.0, memory: 0.43292236328125
+layer: 18, threshold: 0.0, memory: 0.441650390625
+layer: 19, threshold: 0.0, memory: 0.44830322265625
+layer: 20, threshold: 0.0, memory: 0.51409912109375
+layer: 21, threshold: 0.0, memory: 0.52899169921875
+layer: 22, threshold: 0.0, memory: 0.566162109375
+layer: 23, threshold: 0.0, memory: 0.60296630859375
+layer: 24, threshold: 0.0, memory: 0.54376220703125
+layer: 25, threshold: 0.0, memory: 0.54620361328125
+layer: 26, threshold: 0.0, memory: 0.591796875
+layer: 27, threshold: 0.0, memory: 0.654052734375
+layer: 28, threshold: 0.0, memory: 0.69940185546875
+layer: 29, threshold: 0.0, memory: 0.75836181640625
+layer: 30, threshold: 0.0, memory: 0.76116943359375
+layer: 31, threshold: 0.0, memory: 0.6236572265625

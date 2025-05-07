@@ -1,0 +1,21 @@
+Baseline
+4k: forward time: 4324.16748046875, backward time: 1838.867431640625, optimizer step time: 3.9096319675445557, total time: 6166.94454407692
+6k: forward time: 5106.9833984375, backward time: 2294.614990234375, optimizer step time: 3.6485118865966797, total time: 7405.246900558472
+8k: forward time: 6092.64013671875, backward time: 2629.349365234375, optimizer step time: 4.448256015777588, total time: 8726.437757968903
+10k: forward time: 6695.48095703125, backward time: 3128.75830078125, optimizer step time: 3.7416958808898926, total time: 9827.98095369339
+12k: forward time: 7326.8115234375, backward time: 3287.225341796875, optimizer step time: 4.324351787567139, total time: 10618.361217021942
+14k: forward time: 8566.58984375, backward time: 4020.20751953125, optimizer step time: 4.536320209503174, total time: 12591.333683490753
+16k: forward time: 9557.771484375, backward time: 4690.0263671875, optimizer step time: 4.317183971405029, total time: 14252.115035533905
+
+
+
+Ours
+4k: forward time: 3157.091064453125, backward time: 1578.71826171875, optimizer step time: 3.7765119075775146, total time: 4739.5858380794525
+6k: forward time: 4306.021484375, backward time: 2045.8260498046875, optimizer step time: 3.803136110305786, total time: 6355.650670289993
+8k: forward time: 5378.99072265625, backward time: 2257.3515625, optimizer step time: 5.87775993347168, total time: 7642.220045089722
+10K: forward time: 5493.80224609375, backward time: 2696.5595703125, optimizer step time: 4.311039924621582, total time: 8194.672856330872
+12k: forward time: 6126.822265625, backward time: 3342.58984375, optimizer step time: 4.432896137237549, total time: 9473.845005512238
+14k: forward time: 6588.5361328125, backward time: 3330.324462890625, optimizer step time: 4.347904205322266, total time: 9923.208499908447
+16k: forward time: 6975.58056640625, backward time: 3928.7314453125, optimizer step time: 4.272128105163574, total time: 10908.584139823914
+
+

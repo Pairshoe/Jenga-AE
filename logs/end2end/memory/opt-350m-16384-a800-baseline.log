@@ -1,0 +1,30 @@
+original_num_embeddings: 2048
+original_embed_positions: torch.Size([2050, 1024])
+[2025-05-05 23:33:30,841] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+before forward allocaiton: 666.07958984375, peak memory: 666.07958984375, reserve: 670.0
+after forward allocaiton: 24713.78955078125, peak memory: 26284.69580078125, reserve: 26368.0
+before backward allocaiton: 18499.97705078125, peak memory: 24713.78955078125, reserve: 26368.0
+after backward allocaiton: 688.330078125, peak memory: 21641.599609375, reserve: 26368.0
+before step allocaiton: 688.33056640625, peak memory: 688.3330078125, reserve: 26368.0
+after step allocaiton: 700.33056640625, peak memory: 706.33056640625, reserve: 26368.0
+{'loss': 8.7937, 'grad_norm': 6.931211948394775, 'learning_rate': 1.0000000000000002e-06, 'epoch': 0.0}
+before forward allocaiton: 694.33056640625, peak memory: 700.33056640625, reserve: 26368.0
+after forward allocaiton: 24733.91552734375, peak memory: 26304.82177734375, reserve: 26400.0
+before backward allocaiton: 18520.10302734375, peak memory: 24733.91552734375, reserve: 26400.0
+after backward allocaiton: 700.3310546875, peak memory: 21661.7255859375, reserve: 26400.0
+before step allocaiton: 700.33056640625, peak memory: 700.33349609375, reserve: 26400.0
+after step allocaiton: 700.33056640625, peak memory: 706.33056640625, reserve: 26400.0
+{'loss': 5.8149, 'grad_norm': 14.954679489135742, 'learning_rate': 2.0000000000000003e-06, 'epoch': 0.0}
+before forward allocaiton: 694.33056640625, peak memory: 700.33056640625, reserve: 26400.0
+after forward allocaiton: 24733.91552734375, peak memory: 26304.82177734375, reserve: 26400.0
+before backward allocaiton: 18520.10302734375, peak memory: 24733.91552734375, reserve: 26400.0
+after backward allocaiton: 700.3310546875, peak memory: 21661.7255859375, reserve: 26400.0
+before step allocaiton: 700.33056640625, peak memory: 700.33349609375, reserve: 26400.0
+after step allocaiton: 700.33056640625, peak memory: 706.33056640625, reserve: 26400.0
+{'loss': 8.536, 'grad_norm': 8.513476371765137, 'learning_rate': 3e-06, 'epoch': 0.0}
+before forward allocaiton: 694.33056640625, peak memory: 700.33056640625, reserve: 26400.0
+after forward allocaiton: 24733.91552734375, peak memory: 26304.82177734375, reserve: 26400.0
+before backward allocaiton: 18520.10302734375, peak memory: 24733.91552734375, reserve: 26400.0
+after backward allocaiton: 700.3310546875, peak memory: 21661.7255859375, reserve: 26400.0
+before step allocaiton: 700.33056640625, peak memory: 700.33349609375, reserve: 26400.0
+after step allocaiton: 700.33056640625, peak memory: 706.33056640625, reserve: 26400.0

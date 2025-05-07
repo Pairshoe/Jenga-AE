@@ -1,0 +1,10 @@
+original_num_embeddings: 2048
+original_embed_positions: torch.Size([2050, 1024])
+[2025-05-06 16:32:39,913] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+forward time: 338.3832702636719, backward time: 159.5555877685547, optimizer step time: 62.313472747802734, total time: 560.2523307800293
+{'loss': 10.0873, 'grad_norm': 9.313202857971191, 'learning_rate': 1.0000000000000002e-06, 'epoch': 0.0}
+forward time: 87.1949462890625, backward time: 116.44518280029297, optimizer step time: 3.763200044631958, total time: 207.40332913398743
+{'loss': 10.3928, 'grad_norm': 11.47887134552002, 'learning_rate': 2.0000000000000003e-06, 'epoch': 0.0}
+forward time: 87.51302337646484, backward time: 116.32434844970703, optimizer step time: 3.7396481037139893, total time: 207.57701992988586
+{'loss': 8.5524, 'grad_norm': 12.739531517028809, 'learning_rate': 3e-06, 'epoch': 0.0}
+forward time: 87.33484649658203, backward time: 116.50150299072266, optimizer step time: 3.8440959453582764, total time: 207.68044543266296

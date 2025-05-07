@@ -1,0 +1,4 @@
+original_num_embeddings: 2048
+original_embed_positions: torch.Size([2050, 2048])
+[2025-05-05 23:37:57,880] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+before forward allocaiton: 2642.34814453125, peak memory: 2642.34814453125, reserve: 2654.0

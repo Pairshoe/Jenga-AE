@@ -5,18 +5,18 @@ __pycache__/
 imgs/
 *output
 *.pt
-*.log
 *.out
 data/llama*
 data/raw
 data/pg*
 *emaill.py
 zzzz
-*.pdf
 checkpoints/
 dataset/
 *.pickle
 .vscode/
-logs/
+output_figures-l
+*.pdf
+
 
 
