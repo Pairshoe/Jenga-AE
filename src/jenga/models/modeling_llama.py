@@ -1191,7 +1191,8 @@ class LlamaForCausalLM(LlamaPreTrainedModel, GenerationMixin):
         self.model = LlamaModel(config)
         self.vocab_size = config.vocab_size
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
-
+        self.config = config
+        
         # Initialize weights and apply final processing
         self.post_init()
 
@@ -1292,42 +1293,45 @@ class LlamaForCausalLM(LlamaPreTrainedModel, GenerationMixin):
                 )
             # Only compute necessary logits, and do not upcast them to float if we are not computing the loss
             # TODO: remove the float() operation in v4.46
-        #     logits = self.lm_head(hidden_states[:, -num_logits_to_keep:, :]).float()
+            if hasattr(self.config, "no_segment") and self.config.no_segment:
+                logits = self.lm_head(hidden_states[:, -num_logits_to_keep:, :]).float()
 
-        # loss = None
-        # if labels is not None:
-        #     # Upcast to float if we need to compute the loss to avoid potential precision issues
-        #     logits = logits.float()
-        #     # Shift so that tokens < n predict n
-        #     shift_logits = logits[..., :-1, :].contiguous()
-        #     shift_labels = labels[..., 1:].contiguous()
-        #     # Flatten the tokens
-        #     loss_fct = CrossEntropyLoss()
-        #     shift_logits = shift_logits.view(-1, self.config.vocab_size)
-        #     shift_labels = shift_labels.view(-1)
-        #     # Enable model parallelism
-        #     shift_labels = shift_labels.to(shift_logits.device)
-        #     loss = loss_fct(shift_logits, shift_labels)
-        def forward_fn_chunk(x_chunk, lm_head, label_chunk):
-            """
-            针对输入的一部分做 forward
-            """
-            logits = lm_head(x_chunk)
-            return F.cross_entropy(logits, label_chunk, reduction='sum')
-        
-        if labels is not None:
-            loss = 0.0 
-            N = hidden_states.shape[1]
-            hidden_states = hidden_states.view(N,-1)
-            shift_labels = labels[..., 1:].contiguous()
-            shift_labels = shift_labels.view(-1)
-            for start in range(0, N-1, 2048):
-                end = min(N-1, start + 2048)
-                x_chunk = hidden_states[start:end]
-                label_chunk = shift_labels[start:end]
-                loss_chunk = torch.utils.checkpoint.checkpoint(forward_fn_chunk, x_chunk, self.lm_head, label_chunk)
-                loss += loss_chunk 
-            loss /= N
+        if hasattr(self.config, "no_segment") and self.config.no_segment:
+            loss = None
+            if labels is not None:
+                # Upcast to float if we need to compute the loss to avoid potential precision issues
+                logits = logits.float()
+                # Shift so that tokens < n predict n
+                shift_logits = logits[..., :-1, :].contiguous()
+                shift_labels = labels[..., 1:].contiguous()
+                # Flatten the tokens
+                loss_fct = CrossEntropyLoss()
+                shift_logits = shift_logits.view(-1, self.config.vocab_size)
+                shift_labels = shift_labels.view(-1)
+                # Enable model parallelism
+                shift_labels = shift_labels.to(shift_logits.device)
+                loss = loss_fct(shift_logits, shift_labels)
+        else:
+            def forward_fn_chunk(x_chunk, lm_head, label_chunk):
+                """
+                针对输入的一部分做 forward
+                """
+                logits = lm_head(x_chunk)
+                return F.cross_entropy(logits, label_chunk, reduction='sum')
+            
+            if labels is not None:
+                loss = 0.0 
+                N = hidden_states.shape[1]
+                hidden_states = hidden_states.view(N,-1)
+                shift_labels = labels[..., 1:].contiguous()
+                shift_labels = shift_labels.view(-1)
+                for start in range(0, N-1, 2048):
+                    end = min(N-1, start + 2048)
+                    x_chunk = hidden_states[start:end]
+                    label_chunk = shift_labels[start:end]
+                    loss_chunk = torch.utils.checkpoint.checkpoint(forward_fn_chunk, x_chunk, self.lm_head, label_chunk)
+                    loss += loss_chunk 
+                loss /= N
 
         if not return_dict:
             output = (logits,) + outputs[1:]

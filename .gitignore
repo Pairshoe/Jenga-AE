@@ -15,5 +15,7 @@ zzzz
 *.pdf
 checkpoints/
 dataset/
+*.pickle
+.vscode/
 
 
