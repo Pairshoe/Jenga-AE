@@ -7,7 +7,7 @@ thresh=0.4
 python src/experiment/ablation/predictor/opt_rp.py \
     --model_name_or_path checkpoints/$MODEL \
     --train_file ./dataset/${MAX_LENGTH} \
-    --output_dir experiment/train_llama/output/${MODEL}_16384_predictor_la \
+    --output_dir output/${MODEL}_16384_predictor_la \
     --max_steps 400 \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
