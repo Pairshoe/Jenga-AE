@@ -12,7 +12,7 @@ from transformers import Trainer
 from jenga.models.predictor import PrunableAttnPredictor
 
 
-def extract_pruned_config(model: nn.Module):
+def extract_pruned_config(model: nn.Module, is_opt: bool = False) -> Dict[str, Any]:
     """
     遍历模型中的 PrunableAttnPredictor1，收集它们当前 out_features。
     假设我们只需要存 predictor 的 outdim 信息，用于下次构造同样剪枝形状的 Predictor。
@@ -32,18 +32,27 @@ def extract_pruned_config(model: nn.Module):
     }
     """
     cfg = {"layers": []}
-    for layer in model.model.layers:
-        predictor = layer.self_attn.predictor
-        if isinstance(predictor, PrunableAttnPredictor):
-            layer_cfg = predictor.get_current_outdims()  # dict
-            cfg["layers"].append(layer_cfg)
-        else:
-            cfg["layers"].append(None)
+    if is_opt:
+        for layer in model.model.decoder.layers:
+            predictor = layer.self_attn.predictor
+            if isinstance(predictor, PrunableAttnPredictor):
+                layer_cfg = predictor.get_current_outdims()
+                cfg["layers"].append(layer_cfg)
+            else:
+                cfg["layers"].append(None)
+    else:
+        for layer in model.model.layers:
+            predictor = layer.self_attn.predictor
+            if isinstance(predictor, PrunableAttnPredictor):
+                layer_cfg = predictor.get_current_outdims()  # dict
+                cfg["layers"].append(layer_cfg)
+            else:
+                cfg["layers"].append(None)
     return cfg
 
 
 class PredictorTrainer(Trainer):
-    def __init__(self, orig_weight_training=False, gate_loss_scale=1.0, fix_mask_predictor=False, use_mse_loss=False,  *args, **kwargs):
+    def __init__(self, orig_weight_training=False, gate_loss_scale=1.0, fix_mask_predictor=False, use_mse_loss=False, is_opt = False, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if use_mse_loss:
             self.loss_fct = torch.nn.MSELoss()
@@ -52,6 +61,7 @@ class PredictorTrainer(Trainer):
         self.gate_loss_scale = gate_loss_scale
         self.orig_weight_training = orig_weight_training
         self.fix_mask_predictor = fix_mask_predictor
+        self.is_opt = is_opt
 
 
     def compute_loss(self, model, inputs, return_outputs=False):
@@ -92,7 +102,7 @@ class PredictorTrainer(Trainer):
         if output_dir is None:
             output_dir = self.args.output_dir
         os.makedirs(output_dir, exist_ok=True)
-        pruned_cfg = extract_pruned_config(self.model)
+        pruned_cfg = extract_pruned_config(self.model, self.is_opt)
         params_to_save = {name: param for name, param in self.model.named_parameters() if param.requires_grad}
         torch.save(params_to_save, os.path.join(output_dir, "predictor.pth"))
         torch.save(pruned_cfg, os.path.join(output_dir, "pruned_config.pth"))
@@ -114,7 +124,7 @@ class DynamicPruningPredictorTrainer(PredictorTrainer):
         # 每隔 self.prune_interval 步，对 predictor 执行一次剪枝
         if step > 0 and (step % self.prune_interval == 0) and step < 620:
             times = step // self.prune_interval
-            thresh  = self.zero_ratio_threshold - (times - 1)*0.05
+            thresh  = self.zero_ratio_threshold - (times - 1)*0.1
             for module_name, module in model.named_modules():
                 if isinstance(module, PrunableAttnPredictor):
                     module.prune_neurons(

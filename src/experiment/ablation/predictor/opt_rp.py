@@ -152,7 +152,8 @@ def train():
         args=training_args, 
         train_dataset=small_dataset["train"],
         eval_dataset=None,
-        data_collator=data_collator)
+        data_collator=data_collator,
+        is_opt=True,)
 
     trainer.train(resume_from_checkpoint=False)
     trainer.save_model()

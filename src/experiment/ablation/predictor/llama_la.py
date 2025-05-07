@@ -168,15 +168,6 @@ def train():
         model.pack_loss = True
     data_module = make_supervised_data_module(data_args=data_args)
 
-    lora_config = LoraConfig(
-        r=8,
-        lora_alpha=16,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
-        lora_dropout=0,
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
-    model = get_peft_model(model, lora_config)
     for n, p in model.named_parameters():
         if 'predictor.klinear' in n or 'predictor.qlinear' in n:
             p.requires_grad = True
