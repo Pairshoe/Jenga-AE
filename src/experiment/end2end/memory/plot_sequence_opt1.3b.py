@@ -1,8 +1,61 @@
 import matplotlib.pyplot as plt
+import os
+import re
 
-data = [
-    {"case": "opt1.3b-lora-2K", "memory": 0},
-]
+def parse_memory_logs(log_dir):
+    data = []
+
+    for filename in os.listdir(log_dir):
+        if not filename.endswith(".log"):
+            continue
+
+        filepath = os.path.join(log_dir, filename)
+        try:
+            with open(filepath, "r") as f:
+                lines = [line.strip() for line in f if "reserve" in line]
+        except Exception as e:
+            continue  # Skip unreadable files
+
+        # Determine case name
+        base = filename.replace(".log", "")
+        if "baseline" in base:
+            case_type = "lora"
+            base = base.replace("baseline", "")
+        elif "llora" in base:
+            case_type = "longlora"
+            base = base.replace("llora", "")
+        else:
+            case_type = "jenga"
+        
+        # Extract context length and model
+        parts = base.split("-")
+        if "opt" not in filename:
+            model = parts[0]
+            context = parts[1]  # remove the trailing K if present
+        else:
+            model = parts[0]
+            size = parts[1]
+            model = model+size
+            context = parts[2]
+        context = int(context) // 1024
+        case_name = f"{model}-{case_type}-{context}K"
+
+        # Check if OOM
+        if len(lines) < 10:
+            memory = 0
+        else:
+            # Extract last 'reserve' value
+            match = re.search(r"reserve:\s*([\d.]+)", lines[-1])
+            memory = float(match.group(1)) if match else 0
+
+        data.append({"case": case_name, "memory": memory})
+    print(data)
+    return data
+# data = [
+#     {"case": "llama2-lora-4K", "memory": 0},
+# ]
+
+data = parse_memory_logs("logs/end2end/memory")
 
 colors = ['#255475', '#5D7F84', '#DCBCAC', '#D6838D', '#F3AE75', '#F8F1E4']
 length_order = ["2K", "4K", "8K", "16K", "32K"]
@@ -11,6 +64,8 @@ memory_values = {length: {method: 0 for method in methods} for length in length_
 
 for entry in data:
     case_split = entry["case"].split('-')
+    if "opt1.3" not in case_split[0]:
+        continue
     method = case_split[1]
     length = case_split[-1]
     if length in memory_values and method in methods:
@@ -45,5 +100,5 @@ plt.yticks(fontsize=14)
 plt.xticks([pos + bar_width for pos in x], x_labels, fontsize=14)
 # plt.ylabel("Memory Footprint (GB)", fontsize=14)
 plt.tight_layout()
-plt.savefig("exp-end2end-memory-opt1.3b-sequence.pdf")
+plt.savefig("output_figures/end2end/memory/exp-end2end-memory-opt1.3b-sequence.pdf")
 plt.close()

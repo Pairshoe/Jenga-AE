@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from torch import nn
 from transformers import Trainer
-from echo.models.llama_predictor.predictor import PrunableAttnPredictor
+from jenga.models.predictor import PrunableAttnPredictor
 
 
 def extract_pruned_config(model: nn.Module):
@@ -112,7 +112,7 @@ class DynamicPruningPredictorTrainer(PredictorTrainer):
         step = self.state.global_step
 
         # 每隔 self.prune_interval 步，对 predictor 执行一次剪枝
-        if step > 0 and (step % self.prune_interval == 0) and step < 720:
+        if step > 0 and (step % self.prune_interval == 0) and step < 620:
             times = step // self.prune_interval
             thresh  = self.zero_ratio_threshold - (times - 1)*0.05
             for module_name, module in model.named_modules():

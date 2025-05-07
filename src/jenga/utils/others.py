@@ -5,6 +5,9 @@ import numpy as np
 import torch
 import transformers
 
+hidden_statess = []
+attn_maxpools = []
+
 
 def seed_everything(seed=11):
     random.seed(seed)
