@@ -34,18 +34,6 @@ pip install -e .
 
 ## Getting Start
 
-### 1.Hello-world example
-To ensure the installation is complete, you can run a hello-world example that fine-tunes LLaMA with **Jenga** for one step. 
-```
-scripts/hello_worls.sh
-```
-It will run for approximately 10 seconds and, on success, output something like below:
-
-
-
-
-Please note that reproducing all the original experiments requires strict hardware requirements: except for the end-to-end speedup experiment, which was conducted on an A40 GPU, and the scalability experiment, which was conducted on four RTX 4090 GPUs, all other experiments were performed on a single A800 GPU.
-
 ### 1. Quick Reproduction: Plotting from Raw Data
 
 > **Hardware requirements: No GPUs are needed.**

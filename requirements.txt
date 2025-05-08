@@ -19,4 +19,7 @@ scipy>=1.11.3
 protobuf>=4.24.4
 torchmetrics>=1.2.0
 
+jieba
+fuzzywuzzy
+rouge
 

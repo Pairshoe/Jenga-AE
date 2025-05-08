@@ -1,8 +1,57 @@
 import matplotlib.pyplot as plt
+import os
+import re
 
-data = [
-    {"case": "llama2-lora-a40", "time": 0},
-]
+def parse_memory_logs(log_dir):
+    data = []
+
+    for filename in os.listdir(log_dir):
+        if not filename.endswith(".log") or filename.startswith("checkpoint") or "8192" not in filename:
+            continue
+
+        filepath = os.path.join(log_dir, filename)
+        try:
+            with open(filepath, "r") as f:
+                lines = [line.strip() for line in f if "total time" in line]
+        except Exception as e:
+            continue  # Skip unreadable files
+
+        # Determine case name
+        base = filename.replace(".log", "")
+        if "baseline" in base:
+            case_type = "lora"
+            base = base.replace("-baseline", "")
+        elif "llora" in base:
+            case_type = "longlora"
+            base = base.replace("-llora", "")
+        else:
+            case_type = "jenga"
+        
+        # Extract context length and model
+        parts = base.split("-")
+        if "opt" not in filename:
+            model = parts[0]
+        else:
+            model = parts[0]
+            size = parts[1]
+            model = model+size
+        decive = parts[-1]
+        case_name = f"{model}-{case_type}-{decive}"
+
+
+        # Extract last 'reserve' value
+        match = re.search(r"total time:\s*([\d.]+)", lines[-1])
+        time = float(match.group(1)) if match else 0
+
+        data.append({"case": case_name, "time": time})
+    print(data)
+    return data
+
+
+data = parse_memory_logs("logs/end2end/time")
+# data = [
+#     {"case": "llama2-lora-a40", "time": 0},
+# ]
 
 colors = ['#255475', '#5D7F84', '#DCBCAC', '#D6838D', '#F3AE75', '#F8F1E4']
 models = ["llama3", "llama2", "opt6.7b", "opt2.7b", "opt1.3b", "opt350m"]
