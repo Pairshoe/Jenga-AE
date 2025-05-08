@@ -1,0 +1,6 @@
+original_num_embeddings: 2048
+original_embed_positions: torch.Size([2050, 2560])
+forward time: 562.8992919921875, backward time: 453.1537780761719, optimizer step time: 42.35468673706055, total time: 1058.40775680542
+forward time: 333.5312194824219, backward time: 431.76654052734375, optimizer step time: 4.275199890136719, total time: 769.5729598999023
+forward time: 334.8390808105469, backward time: 431.9344787597656, optimizer step time: 4.000768184661865, total time: 770.7743277549744
+forward time: 334.754638671875, backward time: 431.93035888671875, optimizer step time: 3.999743938446045, total time: 770.6847414970398

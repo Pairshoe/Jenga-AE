@@ -6,7 +6,7 @@ def parse_memory_logs(log_dir):
     data = []
 
     for filename in os.listdir(log_dir):
-        if not filename.endswith(".log") or "checkpoint" not in filename or "4096" not in filename:
+        if not filename.endswith(".log") or "a40" not in filename:
             continue
 
         filepath = os.path.join(log_dir, filename)
@@ -17,8 +17,8 @@ def parse_memory_logs(log_dir):
             continue  # Skip unreadable files
 
         # Determine case name
-        base = filename.replace(".log", "")
         base = filename.replace("checkpoint-", "")
+        base = base.replace(".log", "")
         if "baseline" in base:
             case_type = "lora"
             base = base.replace("-baseline", "")
@@ -41,8 +41,11 @@ def parse_memory_logs(log_dir):
 
 
         # Extract last 'reserve' value
-        match = re.search(r"total time:\s*([\d.]+)", lines[-1])
-        time = float(match.group(1)) if match else 0
+        if len(lines) < 3:
+            time = 0.0
+        else:
+            match = re.search(r"total time:\s*([\d.]+)", lines[-1])
+            time = float(match.group(1)) if match else 0
 
         data.append({"case": case_name, "time": time})
     print(data)

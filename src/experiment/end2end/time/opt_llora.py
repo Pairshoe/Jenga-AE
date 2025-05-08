@@ -63,6 +63,9 @@ def train():
     parser = transformers.HfArgumentParser((ModelArguments, TrainingArguments))
     model_args, training_args = parser.parse_args_into_dataclasses()
     seed_everything(42)
+
+    if  training_args.model_max_length % 2048 != 0:
+        training_args.model_max_length = 2048 * (training_args.model_max_length // 2048 + 1)
     
     config = get_opt_llora(model_name=model_args.model_name_or_path,
                               flash_attention=training_args.flash_attention,

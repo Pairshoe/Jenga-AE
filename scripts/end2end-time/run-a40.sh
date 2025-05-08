@@ -6,18 +6,18 @@ seq_len=4096
 # --------------------------
 # LLaMA 模型（llama2 / llama3）
 # --------------------------
-models_llama=("llama2" "llama3")
-methods_llama=("base" "llora" "jenga")
+# models_llama=("llama2" "llama3")
+# methods_llama=("base" "llora" "jenga")
 
-for model in "${models_llama[@]}"; do
-  for method in "${methods_llama[@]}"; do
-    if [ "$method" == "llora" ]; then
-      bash scripts/end2end-time/llama-${method}.sh $model $seq_len True $device
-    else
-      bash scripts/end2end-time/llama-${method}.sh $model $seq_len True $device
-    fi
-  done
-done
+# for model in "${models_llama[@]}"; do
+#   for method in "${methods_llama[@]}"; do
+#     if [ "$method" == "llora" ]; then
+#       bash scripts/end2end-time/llama-${method}.sh $model $seq_len False $device
+#     else
+#       bash scripts/end2end-time/llama-${method}.sh $model $seq_len False $device
+#     fi
+#   done
+# done
 
 # --------------------------
 # OPT 模型
@@ -27,7 +27,7 @@ methods_opt=("base" "llora" "jenga")
 
 for model in "${models_opt[@]}"; do
   for method in "${methods_opt[@]}"; do
-    bash scripts/end2end-time/opt-${method}.sh $model $seq_len True $device
+    bash scripts/end2end-time/opt-${method}.sh $model $seq_len False $device
   done
 done
 

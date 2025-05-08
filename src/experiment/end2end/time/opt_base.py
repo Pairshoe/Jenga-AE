@@ -63,6 +63,9 @@ def train():
     model_args, training_args = parser.parse_args_into_dataclasses()
     seed_everything(42)
     
+    if  training_args.model_max_length % 2048 != 0:
+        training_args.model_max_length = 2048 * (training_args.model_max_length // 2048 + 1)
+    
     config = get_opt_baseline(model_name=model_args.model_name_or_path,
                               flash_attention=training_args.flash_attention,)
     
@@ -73,8 +76,7 @@ def train():
         
     model = OPTForCausalLM.from_pretrained(model_args.model_name_or_path,
                                            torch_dtype=model_param_type,
-                                           config=config,)
-    
+                                           config=config,)  
     #pos embedding
     max_positions = training_args.model_max_length - 2
     original_num_embeddings = model.model.decoder.embed_positions.num_embeddings - 2

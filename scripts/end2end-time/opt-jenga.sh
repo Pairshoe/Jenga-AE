@@ -31,4 +31,5 @@ python src/experiment/end2end/time/opt_jenga.py \
     --adam_beta2 0.95 \
     --bf16 \
     --model_max_length "${max_length}" \
+    --gradient_checkpoint "${gradient_checkpointing}" \
     > "${log_file}"

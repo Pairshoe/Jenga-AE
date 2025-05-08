@@ -7,9 +7,9 @@ gradient_checkpointing=${3:-"False"}  # 默认值为 False
 device=${4:-"a800"}  
 
 mkdir -p logs/end2end/time
-if [[ "${PYTORCH_CUDA_ALLOC_CONF}" != *"expandable_segments:True"* ]]; then
-    export PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"
-fi
+# if [[ "${PYTORCH_CUDA_ALLOC_CONF}" != *"expandable_segments:True"* ]]; then
+#     export PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"
+# fi
 
 # 根据 gradient_checkpointing 的值设置日志文件名
 if [[ "${gradient_checkpointing}" == "True" ]]; then
@@ -38,5 +38,6 @@ python src/experiment/end2end/time/llama_llora.py \
     --bf16 \
     --model_max_length "${max_length}" \
     --flash_attention True \
-    --block_ratio 0.25 \
+    --block_ratio 0.25\
+    --gradient_checkpoint "${gradient_checkpointing}" \
     > "${log_file}"

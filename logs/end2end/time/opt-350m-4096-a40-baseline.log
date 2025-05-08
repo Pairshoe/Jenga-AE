@@ -1,0 +1,9 @@
+original_num_embeddings: 2048
+original_embed_positions: torch.Size([2050, 1024])
+forward time: 270.01861572265625, backward time: 128.44134521484375, optimizer step time: 39.175167083740234, total time: 437.63512802124023
+{'loss': 4.0449, 'grad_norm': 2.734375, 'learning_rate': 1.0000000000000002e-06, 'epoch': 0.0}
+forward time: 87.11526489257812, backward time: 113.7991714477539, optimizer step time: 3.4007039070129395, total time: 204.31514024734497
+{'loss': 4.5198, 'grad_norm': 3.28125, 'learning_rate': 2.0000000000000003e-06, 'epoch': 0.0}
+forward time: 86.87276458740234, backward time: 113.67731475830078, optimizer step time: 3.4457600116729736, total time: 203.9958393573761
+{'loss': 4.755, 'grad_norm': 1.6484375, 'learning_rate': 3e-06, 'epoch': 0.0}
+forward time: 87.03260803222656, backward time: 113.6732177734375, optimizer step time: 3.3034238815307617, total time: 204.00924968719482
