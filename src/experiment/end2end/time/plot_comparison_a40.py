@@ -6,7 +6,7 @@ def parse_memory_logs(log_dir):
     data = []
 
     for filename in os.listdir(log_dir):
-        if not filename.endswith(".log") or filename.startswith("checkpoint") or "8192" not in filename:
+        if not filename.endswith(".log") or "checkpoint" not in filename or "4096" not in filename:
             continue
 
         filepath = os.path.join(log_dir, filename)
@@ -18,6 +18,7 @@ def parse_memory_logs(log_dir):
 
         # Determine case name
         base = filename.replace(".log", "")
+        base = filename.replace("checkpoint-", "")
         if "baseline" in base:
             case_type = "lora"
             base = base.replace("-baseline", "")

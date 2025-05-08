@@ -42,6 +42,7 @@ class TrainingArguments(transformers.TrainingArguments):
     optim: str = field(default="adamw_torch")
     flash_attention: bool = field(default=True)
     model_max_length: int = field(default=16384)
+    gradient_checkpoint : bool = field(default=False)
 
 
  
@@ -132,9 +133,10 @@ def train():
     )
     model = get_peft_model(model, lora_config)
     
-    # model.config.use_cache = False         # required for gradient checkpointing
-    # model.enable_input_require_grads()     # required for gradient checkpointing
-    # model.gradient_checkpointing_enable()  # enable gradient checkpointing
+    if training_args.gradient_checkpoint:
+        model.config.use_cache = False         # required for gradient checkpointing
+        model.enable_input_require_grads()     # required for gradient checkpointing
+        model.gradient_checkpointing_enable()  # enable gradient checkpointing
     trainer = Trainer(
         model=model, 
         tokenizer=tokenizer, 

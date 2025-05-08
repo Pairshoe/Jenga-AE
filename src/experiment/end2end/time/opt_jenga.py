@@ -45,6 +45,7 @@ class TrainingArguments(transformers.TrainingArguments):
     thresh: float = field(default=0.4)
     mlp_cut: float = field(default=0.5)
     model_max_length: int = field(default=16384)
+    gradient_checkpoint : bool = field(default=False)
 
 
  

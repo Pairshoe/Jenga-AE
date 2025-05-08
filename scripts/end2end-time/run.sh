@@ -1,63 +1,44 @@
-# 4K
-bash scripts/end2end-time/llama-base.sh llama3 8192
-bash scripts/end2end-time/llama-llora.sh llama3 8192
-bash scripts/end2end-time/llama-jenga.sh llama3 8192
-bash scripts/end2end-time/llama-base.sh llama2 8192
-bash scripts/end2end-time/llama-llora.sh llama2 8192
-bash scripts/end2end-time/llama-jenga.sh llama2 8192
+#!/bin/bash
 
-bash scripts/end2end-time/opt-base.sh opt-6.7b 8192
-bash scripts/end2end-time/opt-llora.sh opt-6.7b 8192
-bash scripts/end2end-time/opt-jenga.sh opt-6.7b 8192
+# --------------------------
+# 运行 8192 上的全部模型组合
+# --------------------------
+models_llama=("llama2" "llama3")
+methods_llama=("base" "llora" "jenga")
 
-bash scripts/end2end-time/opt-base.sh opt-2.7b 8192
-bash scripts/end2end-time/opt-llora.sh opt-2.7b 8192
-bash scripts/end2end-time/opt-jenga.sh opt-2.7b 8192
+for model in "${models_llama[@]}"; do
+  for method in "${methods_llama[@]}"; do
+    bash scripts/end2end-time/llama-${method}.sh $model 8192
+  done
+done
 
-bash scripts/end2end-time/opt-base.sh opt-1.3b 8192
-bash scripts/end2end-time/opt-llora.sh opt-1.3b 8192
-bash scripts/end2end-time/opt-jenga.sh opt-1.3b 8192
+models_opt=("opt-6.7b" "opt-2.7b" "opt-1.3b" "opt-350m")
+methods_opt=("base" "llora" "jenga")
 
-bash scripts/end2end-time/opt-base.sh opt-350m 8192
-bash scripts/end2end-time/opt-llora.sh opt-350m 8192
-bash scripts/end2end-time/opt-jenga.sh opt-350m 8192
+for model in "${models_opt[@]}"; do
+  for method in "${methods_opt[@]}"; do
+    bash scripts/end2end-time/opt-${method}.sh $model 8192
+  done
+done
 
-# seq
-bash scripts/end2end-time/llama-base.sh llama2 4096 True
-bash scripts/end2end-time/llama-jenga.sh llama2 4096 True
-bash scripts/end2end-time/llama-base.sh llama3 4096 True
-bash scripts/end2end-time/llama-jenga.sh llama3 4096 True
+# --------------------------
+# LLaMA 不同 seq_len 实验
+# --------------------------
+seq_lens=(4096 8192 16384 32768 49152 65536)
+models_seq=("llama2" "llama3")
+methods_seq=("base" "jenga")  # 只有 base 和 jenga
 
-bash scripts/end2end-time/llama-base.sh llama2 8192 True
-bash scripts/end2end-time/llama-jenga.sh llama2 8192 True
-bash scripts/end2end-time/llama-base.sh llama3 8192 True
-bash scripts/end2end-time/llama-jenga.sh llama3 8192 True
+for model in "${models_seq[@]}"; do
+  for seq_len in "${seq_lens[@]}"; do
+    for method in "${methods_seq[@]}"; do
+      bash scripts/end2end-time/llama-${method}.sh $model $seq_len True
+    done
+  done
+done
 
-bash scripts/end2end-time/llama-base.sh llama2 16384 True
-bash scripts/end2end-time/llama-jenga.sh llama2 16384 True
-bash scripts/end2end-time/llama-base.sh llama3 16384 True
-bash scripts/end2end-time/llama-jenga.sh llama3 16384 True
-
-bash scripts/end2end-time/llama-base.sh llama2 32768 True
-bash scripts/end2end-time/llama-jenga.sh llama2 32768 True
-bash scripts/end2end-time/llama-base.sh llama3 32768 True
-bash scripts/end2end-time/llama-jenga.sh llama3 32768 True
-
-bash scripts/end2end-time/llama-base.sh llama2 49152 True
-bash scripts/end2end-time/llama-jenga.sh llama2 49152 True
-bash scripts/end2end-time/llama-base.sh llama3 49152 True
-bash scripts/end2end-time/llama-jenga.sh llama3 49152 True
-
-bash scripts/end2end-time/llama-base.sh llama2 65536 True
-bash scripts/end2end-time/llama-jenga.sh llama2 65536 True
-bash scripts/end2end-time/llama-base.sh llama3 65536 True
-bash scripts/end2end-time/llama-jenga.sh llama3 65536 True
-
-
-
-
-
+# --------------------------
+# 画图
+# --------------------------
 mkdir -p output_figures/end2end/time
-
 python src/experiment/end2end/time/plot_comparison_a800.py
 python src/experiment/end2end/time/plot_sequence.py

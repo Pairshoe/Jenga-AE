@@ -77,6 +77,12 @@ To retrieve the model weights, first execute the following command to pull the l
 ```
 git lfs pull
 ```
+This part of the experiment is conducted on a single GPU, please run:
+
+```
+export CUDA_VISIBLE_DEVICES=0
+```
+
 
 1. **Figures Reproduction.**
 

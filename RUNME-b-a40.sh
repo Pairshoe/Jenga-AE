@@ -1,0 +1,1 @@
+bash scripts/end2end-time/run-a40.sh

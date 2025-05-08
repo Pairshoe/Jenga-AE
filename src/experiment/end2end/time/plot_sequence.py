@@ -20,7 +20,7 @@ def parse_llama_logs(log_dir):
     seq_map = {"4096": "4k", "8192": "8k", "16384": "16k", "32768": "32k", "49152": "48k", "65536": "64k"}
 
     for filename in os.listdir(log_dir):
-        if not filename.startswith("checkpoint-") or not filename.endswith(".log") or "llora" in filename:
+        if not filename.startswith("checkpoint-") or not filename.endswith(".log") or "llora" in filename or 'a800' not in filename:
             continue
         parts = filename.split("-")
         if "llama2" in filename:
