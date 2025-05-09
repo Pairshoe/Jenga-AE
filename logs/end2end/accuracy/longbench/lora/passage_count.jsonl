@@ -1,0 +1,50 @@
+{"pred": "10", "answers": ["8"], "all_classes": null, "length": 11221}
+{"pred": "1.", "answers": ["11"], "all_classes": null, "length": 9921}
+{"pred": "10", "answers": ["13"], "all_classes": null, "length": 6578}
+{"pred": "10", "answers": ["44"], "all_classes": null, "length": 16346}
+{"pred": "30.", "answers": ["2"], "all_classes": null, "length": 22099}
+{"pred": "10", "answers": ["7"], "all_classes": null, "length": 8383}
+{"pred": "10.", "answers": ["7"], "all_classes": null, "length": 4974}
+{"pred": "197", "answers": ["45"], "all_classes": null, "length": 13970}
+{"pred": "10.", "answers": ["4"], "all_classes": null, "length": 14086}
+{"pred": "111 paragraphs.", "answers": ["31"], "all_classes": null, "length": 12357}
+{"pred": "10", "answers": ["4"], "all_classes": null, "length": 15623}
+{"pred": "10.", "answers": ["16"], "all_classes": null, "length": 11059}
+{"pred": "10\n\nThe final answer is 10.\n\nThe unique paragraphs are:\nParagraph 1\nParagraph 1: O", "answers": ["5"], "all_classes": null, "length": 3991}
+{"pred": "100.", "answers": ["44"], "all_classes": null, "length": 17077}
+{"pred": "111", "answers": ["19"], "all_classes": null, "length": 11340}
+{"pred": "10.", "answers": ["36"], "all_classes": null, "length": 10543}
+{"pred": "10.", "answers": ["24"], "all_classes": null, "length": 8141}
+{"pred": "111, 2, 3, 4, 5, 6, 7, 8, 9, 10,", "answers": ["12"], "all_classes": null, "length": 8534}
+{"pred": "19.", "answers": ["23"], "all_classes": null, "length": 13749}
+{"pred": "10", "answers": ["14"], "all_classes": null, "length": 5649}
+{"pred": "40 paragraphs.", "answers": ["18"], "all_classes": null, "length": 13512}
+{"pred": "10", "answers": ["29"], "all_classes": null, "length": 14584}
+{"pred": "19", "answers": ["22"], "all_classes": null, "length": 12667}
+{"pred": "10", "answers": ["6"], "all_classes": null, "length": 6510}
+{"pred": "10.", "answers": ["8"], "all_classes": null, "length": 6283}
+{"pred": "1.", "answers": ["9"], "all_classes": null, "length": 13036}
+{"pred": "10", "answers": ["26"], "all_classes": null, "length": 5249}
+{"pred": "194.\n\n\nThe unique paragraphs are:\n\n\n1. Paragraph 1\n2. Paragraph 2\n3.", "answers": ["26"], "all_classes": null, "length": 17369}
+{"pred": "10.", "answers": ["28"], "all_classes": null, "length": 10898}
+{"pred": "10.", "answers": ["43"], "all_classes": null, "length": 13330}
+{"pred": "10", "answers": ["34"], "all_classes": null, "length": 13153}
+{"pred": "10.", "answers": ["19"], "all_classes": null, "length": 9732}
+{"pred": "10.", "answers": ["9"], "all_classes": null, "length": 9246}
+{"pred": "10.", "answers": ["40"], "all_classes": null, "length": 11663}
+{"pred": "10", "answers": ["14"], "all_classes": null, "length": 17590}
+{"pred": "111", "answers": ["26"], "all_classes": null, "length": 9718}
+{"pred": "10", "answers": ["25"], "all_classes": null, "length": 13084}
+{"pred": "38", "answers": ["13"], "all_classes": null, "length": 18601}
+{"pred": "111", "answers": ["35"], "all_classes": null, "length": 12177}
+{"pred": "10.", "answers": ["20"], "all_classes": null, "length": 11563}
+{"pred": "10", "answers": ["39"], "all_classes": null, "length": 16004}
+{"pred": "10.", "answers": ["7"], "all_classes": null, "length": 13534}
+{"pred": "10 paragraphs.", "answers": ["12"], "all_classes": null, "length": 10580}
+{"pred": "111", "answers": ["16"], "all_classes": null, "length": 10333}
+{"pred": "16.", "answers": ["30"], "all_classes": null, "length": 14264}
+{"pred": "10.", "answers": ["4"], "all_classes": null, "length": 11680}
+{"pred": "10.", "answers": ["21"], "all_classes": null, "length": 7461}
+{"pred": "10", "answers": ["5"], "all_classes": null, "length": 12151}
+{"pred": "10 paragraphs.", "answers": ["10"], "all_classes": null, "length": 6481}
+{"pred": "10", "answers": ["6"], "all_classes": null, "length": 9456}
