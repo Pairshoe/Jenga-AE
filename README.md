@@ -36,7 +36,7 @@ pip install -e .
 
 ## Data Preparation
 
-Since the model weights and datasets are distributed across different sources, we have listed the download links below to simplify the reproductuon process. To further improve the efficiency of running the AE, we also provide fine-tuned weights, as the fine-tuning process can be time-consuming.
+Since the model weights and datasets are distributed across different sources, we have listed the download links below to simplify the reproduction process. To further improve the efficiency of running the AE, we also provide fine-tuned weights, as the fine-tuning process can be time-consuming.
 
 
 
@@ -145,7 +145,7 @@ To plot all figures in the evaluation section, execute the following command:
 bash RUNME-a.sh
 ```
 
-Once you have successfully run this command,figures will be stored in the directory `output_figures/`.
+Once you have successfully run this command, figures will be stored in the directory `output_figures/`.
 
 The RUNME-a.sh script reads the original log files, performs some post-processing, and plots the figures. The generated figures will be identical to those in the paper.
 
