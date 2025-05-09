@@ -42,7 +42,7 @@ Since the model weights and datasets are distributed across different sources, w
 
 ### 1. Model Weights
 
-Please download the model weights `peft_model.zip` and `predictor.zip` from [Models Link](TODO), unzip the folders and place them in `./checkpoints` directory.
+Please download the model weights `peft_model.zip` and `predictor.zip` from [Models Link](https://cloud.tsinghua.edu.cn/d/29c75b36a8d94016a402/), unzip the folders and place them in `./checkpoints` directory.
 
 After that, please download the following models from Hugging Face and place them in the specified path as shown below.
 
@@ -75,7 +75,7 @@ checkpoints/
 
 ### 2. Datasets
 
-Please download the datasets `dataset.zip` from [Datasets Link](TODO), unzip the folder and place it in the **project root directory**.
+Please download the datasets `dataset.zip` from [Datasets Link](https://cloud.tsinghua.edu.cn/f/d7ac0d22f4ec4faaa547/?dl=1), unzip the folder and place it in the **project root directory**.
 
 The ideal file structure is shown below. 
 
@@ -227,7 +227,7 @@ You can reproduce the experiments seperately based on your interests.
 | Generated Output Folder Name | Corresponding Figure/Table in the Paper | Script Path  | Expected Runtime |
 |-----------------------------|-------------------|---------------------------------------|----------|
 | output_figures/end2end/memory              | Figure 12         | scripts/end2end-memory/run.sh         | 40 mins  |
-| output_figures/end2end/time                | Figure 13         | scripts/end2end-time/run.sh (A800) <br>scripts/end2end-time/run-a40.sh (A40)| 40 mins  |
+| output_figures/end2end/time-a800                | Figure 13         | scripts/end2end-time/run.sh (A800) <br>scripts/end2end-time/run-a40.sh (A40)| 40 mins  |
 | output_figures/ablations/memory-breakdown | Figure 14 (Upper) | scripts/ablation-mem-breakdown/run.sh | 20 mins  |
 | output_figures/ablations/time-breakdown   | Figure 14 (Lower) | scripts/ablation-time-breakdown/run.sh| 20 mins  |
 | output_figures/ablations/algorithm        | Figure 15         | scripts/ablation-algorithm/run.sh     | 5 mins  |
