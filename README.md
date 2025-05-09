@@ -1,32 +1,34 @@
-# Jenga AE
+# [ATC'25 Artifact] Jenga: Enhancing Long-Context Fine-tuning of LLMs with Contextual Token Sparsity
 
-This is the artifact repository for paper #122 at ATC'25, titled **Jenga: Enhancing Long-Context Fine-tuning of LLMs with Contextual Token Sparsity**.
+This is the artifact repository for submission #122 at ATC'25, titled *Jenga: Enhancing Long-Context Fine-tuning of LLMs with Contextual Token Sparsity*.
 
-This repository includes:
+Should there by any questions, please contact the authors in HotCRP. The authors will respond to each question within 24 hours and as soon as possible.
 
-- **Checkpoints (`checkpoints/`):** The fine-tuned model weights for accuracy validation.
-- **Dataset (`dataset/`):** The cleaned E2E dataset used for performance evaluation.
-- **Log Files  (`logs/` ):** Experiment logs used for generating the figures in the paper.
-- **Reproduced Figures (`output_figures/`):** Output directory of reproduced figures. We have provided figures (prefixed with `exp-`) in this directory that were reproduced for reference.
-- **Source Code (`src/`):** The core implementation of Long Exposure.
+## Repository Contents
+
+We provide all necessary components—code, scripts and logs—to fully reproduce the results presented in the paper. Specifically:
+
+- **Log Files  (`logs/` ):** Experiment logs used for figure generation in the paper.
+- **Source Code (`src/`):** Core implementation of our system.
 - **Experiment Scripts (`scripts/`):** Ready-to-use scripts for running experiments corresponding to each figure and table in the paper.
 
 ## Installation
 
-We have compiled a list of all the necessary software dependencies and their specified versions in `requirements.txt` except **Flash Attention**. After installing Python (we recommend version 3.10), these dependencies can be installed automatically by executing:
+We have listed all required software dependencies (with specified versions) in `requirements.txt`, except for *Flash Attention*, which should be installed separately due to build constraints.
+
+After installing Python (we recommend version 3.10), install *the required dependencies* by running:
 
 ```
 pip install -r requirements.txt
 ```
 
-Then, you need to install **Flash Attention**:
+Next, install *Flash Attention* separately:
 
 ```
 pip install flash-attn --no-build-isolation
 ```
 
-
-Finally, you can install Jenga from source:
+Finally, install *Jenga* from source:
 
 ```
 pip install -e .
@@ -34,7 +36,17 @@ pip install -e .
 
 ## Getting Start
 
-### 1. Quick Reproduction: Plotting from Raw Data
+We provide three scripts tailored to different user needs to help you get started with our project:
+
+- **Environment Setup Verification**: This simple script ensures that your environment is correctly configured, and that all basic components are running smoothly. It checks if all dependencies are installed and functioning as expected.
+- **Quick Reproduction**: This script allows you to quickly reproduce the figures from our paper using preprocessed data, without requiring a GPU. It’s ideal for users looking for a fast demonstration of the results.
+- **In-Depth Reproduction**: This script is designed for users who wish to run the full evaluation with the original model weights, enabling the exact reproduction of the results presented in the paper.
+
+### 1. Hello-world Example: Environment Setup Verification
+
+TODO: add descriptions
+
+### 2. Quick Reproduction: Plotting from Raw Data
 
 > **Hardware requirements: No GPUs are needed.**
 >
@@ -66,7 +78,7 @@ The matching relationship between the names of the generated figures and those i
 **Note:** To reproduce Figure 18, the script will generate two pickle files in the `logs/ablations/segment` directory. Simply drag these files into [memory_viz](https://docs.pytorch.org/memory_viz) to recreate the visualization.
 
 
-### 2. In-depth Reproduction: Plotting from Actual Run
+### 3. In-depth Reproduction: Plotting from Actual Run
 
 For **in-depth reproduction**, we first need to obtain the model weights. We provide the model weights in the checkpoints/ directory, allowing you to directly perform evaluation.
 
