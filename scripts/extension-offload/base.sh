@@ -33,4 +33,4 @@ python src/experiment/extention/offload/base.py \
     --flash_attention True \
     --pool_size 64 \
     --thresh 0.4 \
-    # > "logs/extension/offload/${model}_${max_length}-baseline.log" 
+    > "logs/extension/offload/${model}_${max_length}-baseline.log" 

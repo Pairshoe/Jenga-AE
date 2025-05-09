@@ -1,30 +1,47 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import re
+import os
 
-def parse_timing_log(log_path):
+def parse_timing_log(log_dir):
     data = []
-    current_case = None
-    label_map = {"Baseline": "Origin", "Ours": "Jenga"}
-    pattern = re.compile(r"(\d+)[kK]: .*?total time:\s*([0-9.]+)")
 
-    with open(log_path, "r") as f:
-        for line in f:
-            line = line.strip()
-            if line in label_map:
-                current_case = label_map[line]
-            else:
-                match = pattern.search(line)
-                if match and current_case:
-                    batch_size = match.group(1)
-                    total_time = float(match.group(2))
-                    data.append({
-                        "case": f"{batch_size}K {current_case}",
-                        "total_time": total_time
-                    })
+    for filename in os.listdir(log_dir):
+        if not filename.endswith(".log"):
+            continue
+    
+        filepath = os.path.join(log_dir, filename)
+        try:
+            with open(filepath, "r") as f:
+                lines = [line.strip() for line in f if "total time" in line]
+        except Exception as e:
+            continue  # Skip unreadable files
+        
+        base = filename.replace(".log", "")
+        if "baseline" in base:
+            case_type = "Origin"
+            base = base.replace("-baseline", "")
+        elif "ours" in base:
+            case_type = "Jenga"
+            base = base.replace("-ours", "")
+        else:
+            continue
+        
+        parts = base.split("_")
+        model = parts[0]
+        seq_len = parts[1]
+        
+        case_name = f"{int(seq_len)//1024}K {case_type}"
+        
+        match = re.search(r"total time:\s*([\d.]+)", lines[-1])
+        time = float(match.group(1)) if match else 0
+
+        data.append({"case": case_name, "total_time": time})
+    
+    
     return data
 
-data = parse_timing_log("logs/extension/offload/offload.log")
+data = parse_timing_log("logs/extension/offload")
 # data = [
 #     {"case": "4K Origin",   "total_time": 0},
 # ]

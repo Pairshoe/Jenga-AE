@@ -10,7 +10,7 @@ if [[ "${PYTORCH_CUDA_ALLOC_CONF}" != *"expandable_segments:True"* ]]; then
     export PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"
 fi
 
-python src/experiment/extention/offload/base.py\
+python src/experiment/extention/offload/ours.py\
     --model_name_or_path "checkpoints/${model}" \
     --predictor_path checkpoints/predictor \
     --output_dir ./output/${model}_${max_length} \
@@ -32,4 +32,4 @@ python src/experiment/extention/offload/base.py\
     --flash_attention True \
     --pool_size 64 \
     --thresh 0.4 \
-    # > "logs/extension/offload/${model}_${max_length}-ours.log"
+    > "logs/extension/offload/${model}_${max_length}-ours.log"

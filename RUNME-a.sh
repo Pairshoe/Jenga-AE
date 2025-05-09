@@ -12,8 +12,8 @@ python src/experiment/ablation/algorithm/plot_opt_mlp.py
 mkdir -p output_figures/ablations/memory-breakdown
 python src/experiment/ablation/memory-breakdown/plot.py
 
-bash scripts/ablation-segment/base.sh
-bash scripts/ablation-segment/segment.sh
+# bash scripts/ablation-segment/base.sh
+# bash scripts/ablation-segment/segment.sh
 
 mkdir -p output_figures/ablations/time-breakdown
 python src/experiment/ablation/time-breakdown/plot.py
@@ -27,6 +27,9 @@ python src/experiment/end2end/memory/plot_sequence_opt350m.py
 mkdir -p output_figures/end2end/time
 python src/experiment/end2end/time/plot_comparison_a800.py
 python src/experiment/end2end/time/plot_sequence.py
+
+mkdir -p output_figures/end2end/time
+python src/experiment/end2end/time/plot_comparison_a40.py
 
 mkdir -p output_figures/extension/2d
 python src/experiment/extention/2D/plot.py

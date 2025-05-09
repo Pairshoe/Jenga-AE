@@ -83,6 +83,7 @@ def train():
                               pool_size=training_args.pool_size,
                               thresh=training_args.thresh)
     config.ours = True
+    config.model_max_length = training_args.model_max_length
     
     config = set_RoPE(config, training_args.model_max_length)
     

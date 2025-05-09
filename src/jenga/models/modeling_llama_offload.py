@@ -113,6 +113,8 @@ def create_block_tensor(seq_len, block_size):
 def reset_offload_counters():
     """在每个 optimizer.step() **之后** 调一次，清掉统计量。"""
     for k in _activation_offload_current:
+        # print(f"layer {k} offload {_activation_offload_current[k]}")
+        # print(f"layer {k} limit {ACTIVATION_OFFLOAD_LIMITS[k]}")
         _activation_offload_current[k] = 0
         
         
@@ -1249,6 +1251,11 @@ class LlamaForCausalLM(LlamaPreTrainedModel, GenerationMixin):
             ACTIVATION_OFFLOAD_LIMITS = ACTIVATION_OFFLOAD_LIMITS_OURS
         else:
             ACTIVATION_OFFLOAD_LIMITS = ACTIVATION_OFFLOAD_LIMITS_BASE
+            
+        seq_len = config.model_max_length
+        
+        for k, v in ACTIVATION_OFFLOAD_LIMITS.items():
+            ACTIVATION_OFFLOAD_LIMITS[k] = ((seq_len//1024)*0.7+2) * v
         
         self.model = LlamaModel(config)
         self.vocab_size = config.vocab_size
