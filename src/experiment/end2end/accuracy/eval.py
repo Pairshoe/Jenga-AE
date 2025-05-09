@@ -77,10 +77,11 @@ def scorer(dataset, predictions, answers, all_classes):
 if __name__ == '__main__':
     args = parse_args()
     scores = dict()
+    pred_dir = "logs/end2end/accuracy/longbench"
     if args.e:
-        path = f"pred_e/{args.model}/"
+        path = f"{pred_dir}/{args.model}_e/"
     else:
-        path = f"pred/{args.model}/"
+        path = f"{pred_dir}/{args.model}/"
     all_files = os.listdir(path)
     print("Evaluating on:", all_files)
     for filename in all_files:
@@ -102,8 +103,8 @@ if __name__ == '__main__':
             score = scorer(dataset, predictions, answers, all_classes)
         scores[dataset] = score
     if args.e:
-        out_path = f"pred_e/{args.model}/result.json"
+        out_path = f"{pred_dir}/{args.model}_e/result.json"
     else:
-        out_path = f"pred/{args.model}/result.json"
+        out_path = f"{pred_dir}/{args.model}/result.json"
     with open(out_path, "w") as f:
         json.dump(scores, f, ensure_ascii=False, indent=4)

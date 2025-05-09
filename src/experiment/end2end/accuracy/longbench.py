@@ -237,21 +237,22 @@ if __name__ == '__main__':
     dataset2prompt = json.load(open("dataset/longbench/config/dataset2prompt.json", "r"))
     dataset2maxlen = json.load(open("dataset/longbench/config/dataset2maxlen.json", "r"))
     # predict on each dataset
-    if not os.path.exists("pred"):
-        os.makedirs("pred")
-    if not os.path.exists("pred_e"):
-        os.makedirs("pred_e")
+    
+    pred_dir = "logs/end2end/accuracy/longbench"
+    if not os.path.exists(pred_dir):
+        os.makedirs(pred_dir)
+
     for dataset in datasets:
         if args.e:
             data = load_dataset('json', data_files={'test': f'./dataset/longbench/{dataset}_e.jsonl'}, split='test').select(range(50))
-            if not os.path.exists(f"pred_e/{model_name}"):
-                os.makedirs(f"pred_e/{model_name}")
-            out_path = f"pred_e/{model_name}/{dataset}.jsonl"
+            if not os.path.exists(f"{pred_dir}/{model_name}_e"):
+                os.makedirs(f"{pred_dir}/{model_name}_e")
+            out_path = f"{pred_dir}/{model_name}_e/{dataset}.jsonl"
         else:
             data = load_dataset('json', data_files={'test': f'./dataset/longbench/{dataset}.jsonl'}, split='test').select(range(50))
-            if not os.path.exists(f"pred/{model_name}"):
-                os.makedirs(f"pred/{model_name}")
-            out_path = f"pred/{model_name}/{dataset}.jsonl"
+            if not os.path.exists(f"{pred_dir}/{model_name}"):
+                os.makedirs(f"{pred_dir}/{model_name}")
+            out_path = f"{pred_dir}/{model_name}/{dataset}.jsonl"
         prompt_format = dataset2prompt[dataset]
         max_gen = dataset2maxlen[dataset]
         data_all = [data_sample for data_sample in data]

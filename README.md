@@ -169,7 +169,7 @@ To reproduce Table 6,execute the following command:
 ```
 bash scripts/end2end-longbench/run.sh
 ```
-After finishing the script, the **LoneBench prediction and scores** will be stored in the directory `./pred`.
+After finishing the script, the **LoneBench prediction and scores** will be stored in the directory `./logs/end2end/accuracy/longbench`.
 
 To reproduce Table 7,execute the following command:
 
