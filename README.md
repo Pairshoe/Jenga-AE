@@ -73,7 +73,7 @@ The matching relationship between the names of the generated figures and those i
 | ablations/algorithm | Figure 15 |
 | ablations/predictor | Figure 16 (Left) |
 | extension/2d | Figure 19 (Upper) |
-| extension/2d | Figure 19 (Lower) |
+| extension/offload | Figure 19 (Lower) |
 
 **Note:** To reproduce Figure 18, the script will generate two pickle files in the `logs/ablations/segment` directory. Simply drag these files into [memory_viz](https://docs.pytorch.org/memory_viz) to recreate the visualization.
 
