@@ -43,7 +43,7 @@ from transformers.utils import (
 from transformers.models.opt.configuration_opt import OPTConfig
 
 from jenga.ops.get_meta import block_lower_triangle_attn_pool
-from jenga.utils.best_sparsity import opt_mlp, opt_attention
+from jenga.utils.best_meta import opt_mlp, opt_attention
 
 if is_flash_attn_2_available():
     from transformers.modeling_flash_attention_utils import _flash_attention_forward

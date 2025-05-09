@@ -13,7 +13,7 @@ from peft import LoraConfig, get_peft_model
 from transformers import (AutoTokenizer, DataCollatorForLanguageModeling,
                           Trainer)
 
-from jenga.models.modeling_llama import LlamaForCausalLM
+from jenga.models.modeling_llama_offload import LlamaForCausalLM
 from jenga.trainer.time_profile import Trainer
 from jenga.utils.config_utils import get_llama_qk
 from jenga.utils.others import (seed_everything,
@@ -82,7 +82,8 @@ def train():
                               flash_attention=training_args.flash_attention,
                               pool_size=training_args.pool_size,
                               thresh=training_args.thresh)
-    config.time = True
+    config.ours = False
+    
     config = set_RoPE(config, training_args.model_max_length)
     
     pruned_cfg = torch.load(os.path.join(model_args.predictor_path, "pruned_config.pth"))

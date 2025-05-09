@@ -1,0 +1,30 @@
+Num validation tokens: 11337755
+data path dataset/test_pg19.bin
+base model checkpoints/llama2
+peft model checkpoints/peft_model/rp/8k/jenga
+Using seq length 8192
+{'val_acc': 0.555132269859314, 'val_loss': 1.9620680809020996, 'val_perplexity': 7.114014851098099, 'val_perplexity_per_chunk': tensor([7.1140])}
+Num validation tokens: 11337755
+data path dataset/test_pg19.bin
+base model checkpoints/llama2
+peft model checkpoints/peft_model/rp/10k/jenga
+Using seq length 10240
+{'val_acc': 0.5550909042358398, 'val_loss': 1.9632954597473145, 'val_perplexity': 7.122751797228553, 'val_perplexity_per_chunk': tensor([7.1228])}
+Num validation tokens: 11337755
+data path dataset/test_pg19.bin
+base model checkpoints/llama2
+peft model checkpoints/peft_model/rp/12k/jenga
+Using seq length 12288
+{'val_acc': 0.5561420917510986, 'val_loss': 1.9574021100997925, 'val_perplexity': 7.080898408051968, 'val_perplexity_per_chunk': tensor([7.0809])}
+Num validation tokens: 11337755
+data path dataset/test_pg19.bin
+base model checkpoints/llama2
+peft model checkpoints/peft_model/rp/14k/jenga
+Using seq length 14336
+{'val_acc': 0.5551533699035645, 'val_loss': 1.9641062021255493, 'val_perplexity': 7.128528851609224, 'val_perplexity_per_chunk': tensor([7.1285])}
+Num validation tokens: 11337755
+data path dataset/test_pg19.bin
+base model checkpoints/llama2
+peft model checkpoints/peft_model/rp/16k/jenga
+Using seq length 16384
+{'val_acc': 0.5558661818504333, 'val_loss': 1.958042025566101, 'val_perplexity': 7.085431031503009, 'val_perplexity_per_chunk': tensor([7.0854])}
