@@ -44,7 +44,40 @@ We provide three scripts tailored to different user needs to help you get starte
 
 ### 1. Hello-world Example: Environment Setup Verification
 
-TODO: add descriptions
+To verify that everything is correctly set up for Jenga, including model files, datasets, and environment compatibility, please run the following command:
+
+```
+bash hello_world.sh
+```
+
+It will run for approximately 10 seconds and, on success, output something like below:
+
+```
+======================================================
+ Welcome to the Jenga Environment Setup Checker!
+======================================================
+
+--- Checking for base model files ---
+All base model configuration files seem to be present.
+
+--- Checking for PEFT artifacts ---
+All checked PEFT artifacts seem to be present.
+
+--- Checking for datasets ---
+All datasets seem to be present.
+
+--- Running environment compatibility and Jenga functionality test ---
+  Loading LlamaForCausalLM model...
+  Loading predictor attention state dictionary...
+  Performing a test forward and backward pass...
+  Environment compatibility and Jenga functionality test PASSED.
+
+------------------------------------------------------
+Congratulations! All checks passed. Your Jenga environment appears to be set up correctly.
+======================================================
+
+```
+If you see this output, everything is ready and you can proceed with running Jenga.
 
 ### 2. Quick Reproduction: Plotting from Raw Data
 

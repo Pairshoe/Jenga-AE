@@ -1,4 +1,3 @@
-bash scripts/ablaion-predictor/run.sh
 bash scripts/ablation-algorithm/run.sh
 bash scripts/ablation-mem-breakdown/run.sh
 bash scripts/ablation-segment/run.sh
@@ -7,3 +6,4 @@ bash scripts/end2end-memory/run.sh
 bash scripts/end2end-time/run.sh
 bash scripts/extension-2d/run.sh
 bash scripts/extension-offload/run.sh
+bash scripts/ablaion-predictor/run.sh
