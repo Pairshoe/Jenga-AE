@@ -8,9 +8,12 @@ Should there by any questions, please contact the authors in HotCRP. The authors
 
 We provide all necessary components—code, scripts and logs—to fully reproduce the results presented in the paper. Specifically:
 
+- **Model and Predictor Weights  (`checkpoints/` ):** Pre-trained model weights and predictor weights for the experiments in the paper.
+- **Dataset (`dataset/` ):** Datasets used in the experiments.
 - **Log Files  (`logs/` ):** Experiment logs used for figure generation in the paper.
-- **Source Code (`src/`):** Core implementation of our system.
+- **Output Figures (`output_figures/`):** Generated figures from the logs.
 - **Experiment Scripts (`scripts/`):** Ready-to-use scripts for running experiments corresponding to each figure and table in the paper.
+- **Source Code (`src/`):** Core implementation of our system.
 
 ## Installation
 
@@ -37,8 +40,6 @@ pip install -e .
 ## Data Preparation
 
 Since the model weights and datasets are distributed across different sources, we have listed the download links below to simplify the reproduction process. To further improve the efficiency of running the AE, we also provide fine-tuned weights, as the fine-tuning process can be time-consuming.
-
-
 
 ### 1. Model Weights
 
@@ -86,7 +87,6 @@ dataset/
 ├── RedPajama-Data-1T-Sample/
 └── longbench/
 ```
-
 
 ## Getting Start
 
@@ -167,23 +167,25 @@ The matching relationship between the names of the generated figures and those i
 
 ### 3. In-depth Reproduction: Plotting from Actual Run
 
-We provide two types of scripts in this section. 
+We provide two types of scripts in this section:
 
- The first is a **one-step execution script** that reproduces all results from the paper in a single run. It offers great convenience, but results in a significant cost of time comsumption.  
+- **One-step Execution:** These scripts reproduce all the results from the paper in a single run. This approach offers convenience but comes with a significant time cost. 
  
- The second is a set of **individual execution scripts**, which allow you to selectively reproduce the experiments you are interested in.
+- **Separate Execution:** These scripts allow you to selectively reproduce the experiments you are interested in, which is more flexible.
 
-
-Before getting started, please run the command below because the following experiments are conducted on a single GPU.
+**Note:** Before getting started, please run the command below because the following experiments are conducted on a single GPU.
 
 ```
 export CUDA_VISIBLE_DEVICES=0
 ```
 
+#### 3.1 One-step Execution
 
-#### 1. One-step Execution Script
+> **Hardware requirements: 1 NVIDIA A800 GPU or 1 NVIDIA A40 GPU.**
+>
+> **Estimated Time: about 5 hours.**
 
-1. **Figures Reprodution**
+**(1) Figure Reprodution**
 
 To reproduce all the experiment figures in the paper, execute the following two commands on corresponding hardware platform:
 ```
@@ -198,9 +200,7 @@ Due to fluctuations in hardware performance, the generated figures may differ sl
 
 The matching relationship between the names of the generated figures and those in the paper is the same as the table above.
 
-
-
-2. **Tables Reproduction**
+**(2) Table Reproduction**
 
 To reproduce Table 6,execute the following command:
 
@@ -216,13 +216,11 @@ bash scripts/end2end-ppl/ppl.sh  # Hardware requirements: 1 NVIDIA A800 GPU
 ```
 After finishing the script, the **Perplexity (PPL) results** will be stored in the directory `logs/end2end/accuracy/`.
 
-#### 2. Individual Execution Script
+#### 3.2 Separate Execution
 
 The reproduction scripts for each experiment and their expected execution time are summarized in the table below.  
 
 You can reproduce the experiments seperately based on your interests.
-
-
 
 | Generated Output Folder Name | Corresponding Figure/Table in the Paper | Script Path  | Expected Runtime |
 |-----------------------------|-------------------|---------------------------------------|----------|
@@ -237,5 +235,3 @@ You can reproduce the experiments seperately based on your interests.
 | output_figures/extension/offload          | Figure 19 (Lower) | scripts/extension-offload/run.sh      | 30 mins  |
 | logs/end2end/accuracy/longbench          | Table 6 | scripts/end2end-longbench/run.sh      | 3 hours  |
 | logs/end2end/accuracy          | Table 7 | scripts/end2end-ppl/ppl.sh      | 3 hours  |
-
-
