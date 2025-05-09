@@ -34,6 +34,60 @@ Finally, install *Jenga* from source:
 pip install -e .
 ```
 
+## Data Preparation
+
+Since the model weights and datasets are distributed across different sources, we have listed the download links below to simplify the reproductuon process. To further improve the efficiency of running the AE, we also provide fine-tuned weights, as the fine-tuning process can be time-consuming.
+
+
+
+### 1. Model Weights
+
+Please download the model weights `peft_model.zip` and `predictor.zip` from [Models Link](TODO), unzip the folders and place them in `./checkpoints` directory.
+
+After that, please download the following models from Hugging Face and place them in the specified path as shown below.
+
+| Destination Path      | Source URL     |
+|-------------------------|------------------------------------|
+|checkpoints/llama3|[meta-llama/Meta-Llama-3-8B](https://huggingface.co/meta-llama/Meta-Llama-3-8B)|
+|checkpoints/llama2|[meta-llama/Llama-2-7b-hf](https://huggingface.co/meta-llama/Llama-2-7b-hf)|
+|checkpoints/opt-6.7b|[facebook/opt-6.7b](https://huggingface.co/facebook/opt-6.7b)|
+|checkpoints/opt-2.7b|[facebook/opt-2.7b](https://huggingface.co/facebook/opt-2.7b)|
+|checkpoints/opt-1.3b|[facebook/opt-1.3b](https://huggingface.co/facebook/opt-1.3b)|
+|checkpoints/opt-350m|[facebook/opt-350m](https://huggingface.co/facebook/opt-350m)|
+|checkpoints/opt-125m|[facebook/opt-125m](https://huggingface.co/facebook/opt-125m)|
+
+**Note:** You need to apply for access before downloading the LLaMA 2 or LLaMA 3 models.
+
+The ideal file structure is shown below. 
+
+```
+checkpoints/
+├── llama2/
+├── llama3/
+├── opt-6.7b/
+├── opt-2.7b/
+├── opt-1.3b/ 
+├── opt-350m/
+├── opt-125m/
+├── peft_model/
+└── predictor/
+```
+
+### 2. Datasets
+
+Please download the datasets `dataset.zip` from [Datasets Link](TODO), unzip the folder and place it in the **project root directory**.
+
+The ideal file structure is shown below. 
+
+```
+dataset/
+├── LongAlign/
+├── PPL/
+├── RedPajama-Data-1T-Sample/
+└── longbench/
+```
+
+
 ## Getting Start
 
 We provide three scripts tailored to different user needs to help you get started with our project:
@@ -97,7 +151,7 @@ The RUNME-a.sh script reads the original log files, performs some post-processin
 
 The matching relationship between the names of the generated figures and those in the paper is:
 
-| Generated Figure Folder Name | Corresponding Figure in the Paper |
+| Generated Figure Folder Name | Corresponding Figure in the Paper | 
 | ---- | ---- |
 | end2end/memory | Figure 12 |
 | end2end/time | Figure 13|
@@ -113,41 +167,29 @@ The matching relationship between the names of the generated figures and those i
 
 ### 3. In-depth Reproduction: Plotting from Actual Run
 
-For **in-depth reproduction**, we first need to obtain the model weights. We provide the model weights in the checkpoints/ directory, allowing you to directly perform evaluation.
+We provide two types of scripts in this section. 
 
-Due to the large size of the model weights, we use Git LFS to upload them to GitHub.
+ The first is a **one-step execution script** that reproduces all results from the paper in a single run. It offers great convenience, but results in a significant cost of time comsumption.  
+ 
+ The second is a set of **individual execution scripts**, which allow you to selectively reproduce the experiments you are interested in.
 
-To retrieve the model weights, first execute the following command to pull the large files:
 
-```
-git lfs pull
-```
-This part of the experiment is conducted on a single GPU, please run:
+Before getting started, please run the command below because the following experiments are conducted on a single GPU.
 
 ```
 export CUDA_VISIBLE_DEVICES=0
 ```
 
 
-1. **Figures Reproduction.**
+#### 1. One-step Execution Script
+
+1. **Figures Reprodution**
 
 To reproduce all the experiment figures in the paper, execute the following two commands on corresponding hardware platform:
-> **Hardware requirements: 1 NVIDIA A800 GPU.**
->
-> **Estimated Time: about ? hours.**
-
-
 ```
-bash RUNME-b-a800.sh
-```
+bash RUNME-b-a800.sh  # Hardware requirements: 1 NVIDIA A800 GPU
 
-> **Hardware requirements: 1 NVIDIA A40 GPU.**
->
-> **Estimated Time: about ? hours.**
-
-
-```
-bash RUNME-b-a40.sh
+bash RUNME-b-a40.sh   # Hardware requirements: 1 NVIDIA A40 GPU
 ```
 
 Once you have successfully run these commands, all the figures will be stored in the directory `output_figures/`.
@@ -160,23 +202,40 @@ The matching relationship between the names of the generated figures and those i
 
 2. **Tables Reproduction**
 
-> **Hardware requirements: 1 NVIDIA A800 GPU.**
-> 
-> **Estimated Time: about ? hours.**
-
 To reproduce Table 6,execute the following command:
 
 ```
-bash scripts/end2end-longbench/run.sh
+bash scripts/end2end-longbench/run.sh   # Hardware requirements: 1 NVIDIA A800 GPU 
 ```
 After finishing the script, the **LoneBench prediction and scores** will be stored in the directory `./logs/end2end/accuracy/longbench`.
 
-To reproduce Table 7,execute the following command:
+To reproduce Table 7, execute the following command:
 
 ```
-bash scripts/end2end-ppl/ppl.sh
+bash scripts/end2end-ppl/ppl.sh  # Hardware requirements: 1 NVIDIA A800 GPU
 ```
 After finishing the script, the **Perplexity (PPL) results** will be stored in the directory `logs/end2end/accuracy/`.
 
+#### 2. Individual Execution Script
+
+The reproduction scripts for each experiment and their expected execution time are summarized in the table below.  
+
+You can reproduce the experiments seperately based on your interests.
+
+
+
+| Generated Output Folder Name | Corresponding Figure/Table in the Paper | Script Path  | Expected Runtime |
+|-----------------------------|-------------------|---------------------------------------|----------|
+| output_figures/end2end/memory              | Figure 12         | scripts/end2end-memory/run.sh         | 40 mins  |
+| output_figures/end2end/time                | Figure 13         | scripts/end2end-time/run.sh (A800) <br>scripts/end2end-time/run-a40.sh (A40)| 40 mins  |
+| output_figures/ablations/memory-breakdown | Figure 14 (Upper) | scripts/ablation-mem-breakdown/run.sh | 20 mins  |
+| output_figures/ablations/time-breakdown   | Figure 14 (Lower) | scripts/ablation-time-breakdown/run.sh| 20 mins  |
+| output_figures/ablations/algorithm        | Figure 15         | scripts/ablation-algorithm/run.sh     | 5 mins  |
+| output_figures/ablations/predictor        | Figure 16 (Left)  | scripts/ablation-predictor/run.sh     | 3 hours  |
+| output_figures/ablations/segment          | Figure 18 (Drag to [memory_viz](https://docs.pytorch.org/memory_viz)) | scripts/ablation-segment/run.sh           | 5 mins  |
+| output_figures/extension/2d               | Figure 19 (Upper) | scripts/extension-2d/run.sh           | 10 mins  |
+| output_figures/extension/offload          | Figure 19 (Lower) | scripts/extension-offload/run.sh      | 30 mins  |
+| logs/end2end/accuracy/longbench          | Table 6 | scripts/end2end-longbench/run.sh      | 3 hours  |
+| logs/end2end/accuracy          | Table 7 | scripts/end2end-ppl/ppl.sh      | 3 hours  |
 
 

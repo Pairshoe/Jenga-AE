@@ -13,7 +13,6 @@ data/pg*
 zzzz
 checkpoints/
 dataset/
-*.pickle
 .vscode/
 output_figures-l
 *.pdf
