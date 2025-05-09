@@ -62,24 +62,39 @@ ACTIVATION_OFFLOAD_LIMITS: Dict[int, int] = {
     0:  2_000_000,
 }
 
+_CPU_TRANSFER_STREAM = torch.cuda.Stream() if torch.cuda.is_available() else None
 
 def _make_offload_hooks(layer_idx: int):
-    """
-    针对指定 layer 生成 pack / unpack hook。
-      • pack_hook: 如果本层剩余额度允许，就把 tensor 异步拷到 CPU；
-                   否则直接返回原 tensor（留在 GPU）。
-      • unpack_hook: 反向传播时如发现 tensor 在 CPU，就非阻塞拷回 GPU。
-    """
+
     limit = ACTIVATION_OFFLOAD_LIMITS.get(layer_idx, float("inf"))
 
     def pack_hook(t: torch.Tensor):
         if t.device.type != "cpu" and (_activation_offload_current[layer_idx] + t.numel() <= limit):
             _activation_offload_current[layer_idx] += t.numel()
-            return t.detach().to("cpu", non_blocking=True)
+            
+            cpu_buf = torch.empty_like(t, device="cpu", pin_memory=True)
+            
+            if _CPU_TRANSFER_STREAM is None:
+                with torch.cuda.stream(_CPU_TRANSFER_STREAM):
+                    cpu_buf.copy_(t, non_blocking=True)
+                    
+                t.record_stream(_CPU_TRANSFER_STREAM)
+            else:
+                cpu_buf.copy_(t)
+                
+            cpu_buf.requires_grad = t.requires_grad
+            return cpu_buf
+            
         return t  # 不 offload
 
     def unpack_hook(t: torch.Tensor):
-        return t.to("cuda", non_blocking=True) if t.device.type == "cpu" else t
+        if t.device.type == "cpu":
+            if _CPU_TRANSFER_STREAM is None:
+                torch.cuda.current_stream().wait_stream(_CPU_TRANSFER_STREAM)
+            
+            return t.to("cuda", non_blocking=True)
+        
+        return t
 
     return pack_hook, unpack_hook
 
