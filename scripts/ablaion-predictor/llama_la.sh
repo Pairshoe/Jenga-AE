@@ -6,7 +6,7 @@ thresh=0.4
 
 python src/experiment/ablation/predictor/llama_la.py \
     --model_name_or_path checkpoints/$MODEL \
-    --train_file ./dataset/${MAX_LENGTH} \
+    --train_file ./dataset/LongAlign/${MAX_LENGTH} \
     --output_dir output/${MODEL}_${MAX_LENGTH}_predictor_la \
     --max_steps 400 \
     --per_device_train_batch_size 1 \
