@@ -1,4 +1,4 @@
-[2025-05-08 02:09:05,817] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-10 14:40:23,200] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
 before forward allocaiton: 12950.66552734375, peak memory: 12950.66552734375, reserve: 12964.0
 after forward allocaiton: 74804.962890625, peak memory: 74804.962890625, reserve: 75762.0
 before backward allocaiton: 63348.962890625, peak memory: 74804.962890625, reserve: 75762.0
