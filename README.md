@@ -225,13 +225,13 @@ You can reproduce the experiments seperately based on your interests.
 | Generated Output Folder Name | Corresponding Figure/Table in the Paper | Script Path  | Expected Runtime |
 |-----------------------------|-------------------|---------------------------------------|----------|
 | output_figures/end2end/memory              | Figure 12         | scripts/end2end-memory/run.sh         | 40 mins  |
-| output_figures/end2end/time-a800                | Figure 13         | scripts/end2end-time/run.sh (A800) <br>scripts/end2end-time/run-a40.sh (A40)| 40 mins  |
-| output_figures/ablations/memory-breakdown | Figure 14 (Upper) | scripts/ablation-mem-breakdown/run.sh | 20 mins  |
-| output_figures/ablations/time-breakdown   | Figure 14 (Lower) | scripts/ablation-time-breakdown/run.sh| 20 mins  |
+| output_figures/end2end/time-a800                | Figure 13         | scripts/end2end-time/run.sh (A800) <br>scripts/end2end-time/run-a40.sh (A40)| 50 mins  |
+| output_figures/ablations/memory-breakdown | Figure 14 (Upper) | scripts/ablation-mem-breakdown/run.sh | 10 mins  |
+| output_figures/ablations/time-breakdown   | Figure 14 (Lower) | scripts/ablation-time-breakdown/run.sh| 10 mins  |
 | output_figures/ablations/algorithm        | Figure 15         | scripts/ablation-algorithm/run.sh     | 5 mins  |
 | output_figures/ablations/predictor        | Figure 16 (Left)  | scripts/ablation-predictor/run.sh     | 3 hours  |
 | output_figures/ablations/segment          | Figure 18 (Drag to [memory_viz](https://docs.pytorch.org/memory_viz)) | scripts/ablation-segment/run.sh           | 5 mins  |
-| output_figures/extension/2d               | Figure 19 (Upper) | scripts/extension-2d/run.sh           | 10 mins  |
+| output_figures/extension/2d               | Figure 19 (Upper) | scripts/extension-2d/run.sh           | 25 mins  |
 | output_figures/extension/offload          | Figure 19 (Lower) | scripts/extension-offload/run.sh      | 30 mins  |
 | logs/end2end/accuracy/longbench          | Table 6 | scripts/end2end-longbench/run.sh      | 3 hours  |
 | logs/end2end/accuracy          | Table 7 | scripts/end2end-ppl/ppl.sh      | 3 hours  |

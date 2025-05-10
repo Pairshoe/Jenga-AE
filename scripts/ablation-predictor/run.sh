@@ -1,8 +1,8 @@
-bash scripts/ablaion-predictor/llama_rp.sh
-bash scripts/ablaion-predictor/opt_rp.sh
+bash scripts/ablation-predictor/llama_rp.sh
+bash scripts/ablation-predictor/opt_rp.sh
 
-bash scripts/ablaion-predictor/llama_la.sh
-bash scripts/ablaion-predictor/opt_la.sh
+bash scripts/ablation-predictor/llama_la.sh
+bash scripts/ablation-predictor/opt_la.sh
 
 
 mkdir -p logs/ablations/predictor

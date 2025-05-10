@@ -47,9 +47,9 @@ def parse_llama_logs(log_dir):
                 lines = f.readlines()
             match = re.search(r"total time:\s*([\d.]+)", lines[-1])
             if not match:
-                model_data[method].append(0.0)
-                continue
-            total_time = float(match.group(1))
+                total_time = 0
+            else:
+                total_time = float(match.group(1))
             # Place in correct sequence position
             idx = model_data["Seq"].index(seq_str)
             while len(model_data["lora"]) <= idx:

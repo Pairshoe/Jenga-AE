@@ -9,12 +9,12 @@ do
 
     python src/experiment/end2end/accuracy/ppl.py --seq_len $seq_len \
         --peft_model checkpoints/peft_model/rp/$((seq_len/1024))k/jenga \
-        --data_path dataset/PPL/test_pg19.bin \
+        --data_path dataset/PPL/proof_pile.bin \
         >> logs/end2end/accuracy/ppl-jenga-pp.log
 
     python src/experiment/end2end/accuracy/ppl.py --seq_len $seq_len \
         --peft_model checkpoints/peft_model/rp/$((seq_len/1024))k/lora \
-        --data_path dataset/PPL/test_pg19.bin \
+        --data_path dataset/PPL/proof_pile.bin \
         >> logs/end2end/accuracy/ppl-lora-pp.log
 
 done
