@@ -28,7 +28,7 @@ MODEL_CONFIGS = [
 PEFT_METHODS = ["jenga", "lora"]
 PEFT_SEQ_LENS = ["8k", "10k", "12k", "14k", "16k"]
 
-DATASET_NAMES = ["16384", "longbench", "RedPajama-Data-1T-Sample", "test_pg19.bin", "proof_pile.bin"]
+DATASET_NAMES = ["LongAlign/16384", "longbench", "RedPajama-Data-1T-Sample", "PPL/proof_pile.bin", "PPL/proof_pile.bin"]
 
 
 def check_base_models_exist() -> bool:
