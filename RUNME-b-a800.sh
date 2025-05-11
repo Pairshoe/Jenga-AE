@@ -7,3 +7,4 @@ bash scripts/end2end-time/run-a800.sh
 bash scripts/extension-2d/run.sh
 bash scripts/extension-offload/run.sh
 bash scripts/ablation-predictor/run.sh
+bash scripts/scalability/run.sh

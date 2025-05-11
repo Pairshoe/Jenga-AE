@@ -161,6 +161,7 @@ The matching relationship between the names of the generated figures and those i
 | ablations/predictor | Figure 16 (Left) |
 | extension/2d | Figure 19 (Upper) |
 | extension/offload | Figure 19 (Lower) |
+|scalability | Figure 20 |
 
 **Note:** To reproduce Figure 18, the script will generate two pickle files in the `logs/ablations/segment` directory. Simply drag these files into [memory_viz](https://docs.pytorch.org/memory_viz) to recreate the visualization.
 
@@ -233,5 +234,6 @@ You can reproduce the experiments seperately based on your interests.
 | output_figures/ablations/segment          | Figure 18 (Drag to [memory_viz](https://docs.pytorch.org/memory_viz)) | scripts/ablation-segment/run.sh           | 5 mins  |
 | output_figures/extension/2d               | Figure 19 (Upper) | scripts/extension-2d/run.sh           | 25 mins  |
 | output_figures/extension/offload          | Figure 19 (Lower) | scripts/extension-offload/run.sh      | 30 mins  |
+|output_figures/scalability | Figure 20 | scripts/scalability/run.sh| 30mins|
 | logs/end2end/accuracy/longbench          | Table 6 | scripts/end2end-longbench/run.sh      | 3 hours  |
 | logs/end2end/accuracy          | Table 7 | scripts/end2end-ppl/ppl.sh      | 3 hours  |

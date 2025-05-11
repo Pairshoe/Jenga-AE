@@ -36,3 +36,8 @@ python src/experiment/extention/2D/plot.py
 
 mkdir -p output_figures/extension/offload
 python src/experiment/extention/offload/plot.py
+
+
+mkdir -p output_figures/scalability
+python src/experiment/scalability/plot_llama2.py
+python src/experiment/scalability/plot_opt.py

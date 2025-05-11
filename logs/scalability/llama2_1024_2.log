@@ -1,0 +1,26 @@
+[2025-05-11 22:49:32,504] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 22:49:33,030] [WARNING] [runner.py:202:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2025-05-11 22:49:33,052] [INFO] [runner.py:568:main] cmd = /root/miniconda3/bin/python -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMV19 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None src/experiment/scalability/time.py --model_name_or_path checkpoints/llama2 --predictor_path checkpoints/predictor --output_dir ./output/llama2_1024 --max_steps 2400 --per_device_train_batch_size 1 --per_device_eval_batch_size 1 --gradient_accumulation_steps 1 --save_strategy steps --save_steps 400 --save_total_limit 10 --learning_rate 2e-5 --weight_decay 0.0 --warmup_steps 20 --lr_scheduler_type constant_with_warmup --adam_beta1 0.9 --adam_beta2 0.95 --bf16 --model_max_length 1024 --flash_attention True --pool_size 64 --thresh 0.4 --deepspeed src/experiment/scalability/ds_config/stage2.json --gradient_checkpoint True
+[2025-05-11 22:49:35,835] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 22:49:36,298] [INFO] [launch.py:145:main] WORLD INFO DICT: {'localhost': [0, 1]}
+[2025-05-11 22:49:36,298] [INFO] [launch.py:151:main] nnodes=1, num_local_procs=2, node_rank=0
+[2025-05-11 22:49:36,298] [INFO] [launch.py:162:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1]})
+[2025-05-11 22:49:36,298] [INFO] [launch.py:163:main] dist_world_size=2
+[2025-05-11 22:49:36,298] [INFO] [launch.py:165:main] Setting CUDA_VISIBLE_DEVICES=0,1
+[2025-05-11 22:49:36,299] [INFO] [launch.py:253:main] process 67581 spawned with command: ['/root/miniconda3/bin/python', '-u', 'src/experiment/scalability/time.py', '--local_rank=0', '--model_name_or_path', 'checkpoints/llama2', '--predictor_path', 'checkpoints/predictor', '--output_dir', './output/llama2_1024', '--max_steps', '2400', '--per_device_train_batch_size', '1', '--per_device_eval_batch_size', '1', '--gradient_accumulation_steps', '1', '--save_strategy', 'steps', '--save_steps', '400', '--save_total_limit', '10', '--learning_rate', '2e-5', '--weight_decay', '0.0', '--warmup_steps', '20', '--lr_scheduler_type', 'constant_with_warmup', '--adam_beta1', '0.9', '--adam_beta2', '0.95', '--bf16', '--model_max_length', '1024', '--flash_attention', 'True', '--pool_size', '64', '--thresh', '0.4', '--deepspeed', 'src/experiment/scalability/ds_config/stage2.json', '--gradient_checkpoint', 'True']
+[2025-05-11 22:49:36,300] [INFO] [launch.py:253:main] process 67582 spawned with command: ['/root/miniconda3/bin/python', '-u', 'src/experiment/scalability/time.py', '--local_rank=1', '--model_name_or_path', 'checkpoints/llama2', '--predictor_path', 'checkpoints/predictor', '--output_dir', './output/llama2_1024', '--max_steps', '2400', '--per_device_train_batch_size', '1', '--per_device_eval_batch_size', '1', '--gradient_accumulation_steps', '1', '--save_strategy', 'steps', '--save_steps', '400', '--save_total_limit', '10', '--learning_rate', '2e-5', '--weight_decay', '0.0', '--warmup_steps', '20', '--lr_scheduler_type', 'constant_with_warmup', '--adam_beta1', '0.9', '--adam_beta2', '0.95', '--bf16', '--model_max_length', '1024', '--flash_attention', 'True', '--pool_size', '64', '--thresh', '0.4', '--deepspeed', 'src/experiment/scalability/ds_config/stage2.json', '--gradient_checkpoint', 'True']
+[2025-05-11 22:49:39,932] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 22:49:39,952] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 22:49:40,227] [INFO] [comm.py:637:init_distributed] cdb=None
+[2025-05-11 22:49:40,248] [INFO] [comm.py:637:init_distributed] cdb=None
+[2025-05-11 22:49:40,248] [INFO] [comm.py:668:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+total time: 827.7565307617188
+total time: 1293.8836669921875
+total time: 433.71563720703125total time: 433.7303771972656
+
+total time: 427.20697021484375
+total time: 427.33282470703125
+total time: 429.85504150390625
+total time: 430.96697998046875
+[2025-05-11 22:50:06,331] [INFO] [launch.py:348:main] Process 67581 exits successfully.
+[2025-05-11 22:50:06,331] [INFO] [launch.py:348:main] Process 67582 exits successfully.

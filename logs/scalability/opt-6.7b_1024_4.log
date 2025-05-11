@@ -1,0 +1,42 @@
+[2025-05-11 23:02:17,711] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 23:02:18,234] [WARNING] [runner.py:202:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2025-05-11 23:02:18,257] [INFO] [runner.py:568:main] cmd = /root/miniconda3/bin/python -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgM119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None src/experiment/scalability/time.py --model_name_or_path checkpoints/opt-6.7b --predictor_path checkpoints/predictor --output_dir ./output/opt-6.7b_1024 --max_steps 2400 --per_device_train_batch_size 1 --per_device_eval_batch_size 1 --gradient_accumulation_steps 1 --save_strategy steps --save_steps 400 --save_total_limit 10 --learning_rate 2e-5 --weight_decay 0.0 --warmup_steps 20 --lr_scheduler_type constant_with_warmup --adam_beta1 0.9 --adam_beta2 0.95 --bf16 --model_max_length 1024 --flash_attention True --pool_size 64 --thresh 0.4 --deepspeed src/experiment/scalability/ds_config/stage2.json --gradient_checkpoint True
+[2025-05-11 23:02:21,031] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 23:02:21,474] [INFO] [launch.py:145:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3]}
+[2025-05-11 23:02:21,474] [INFO] [launch.py:151:main] nnodes=1, num_local_procs=4, node_rank=0
+[2025-05-11 23:02:21,474] [INFO] [launch.py:162:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3]})
+[2025-05-11 23:02:21,474] [INFO] [launch.py:163:main] dist_world_size=4
+[2025-05-11 23:02:21,474] [INFO] [launch.py:165:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3
+[2025-05-11 23:02:21,475] [INFO] [launch.py:253:main] process 75942 spawned with command: ['/root/miniconda3/bin/python', '-u', 'src/experiment/scalability/time.py', '--local_rank=0', '--model_name_or_path', 'checkpoints/opt-6.7b', '--predictor_path', 'checkpoints/predictor', '--output_dir', './output/opt-6.7b_1024', '--max_steps', '2400', '--per_device_train_batch_size', '1', '--per_device_eval_batch_size', '1', '--gradient_accumulation_steps', '1', '--save_strategy', 'steps', '--save_steps', '400', '--save_total_limit', '10', '--learning_rate', '2e-5', '--weight_decay', '0.0', '--warmup_steps', '20', '--lr_scheduler_type', 'constant_with_warmup', '--adam_beta1', '0.9', '--adam_beta2', '0.95', '--bf16', '--model_max_length', '1024', '--flash_attention', 'True', '--pool_size', '64', '--thresh', '0.4', '--deepspeed', 'src/experiment/scalability/ds_config/stage2.json', '--gradient_checkpoint', 'True']
+[2025-05-11 23:02:21,476] [INFO] [launch.py:253:main] process 75943 spawned with command: ['/root/miniconda3/bin/python', '-u', 'src/experiment/scalability/time.py', '--local_rank=1', '--model_name_or_path', 'checkpoints/opt-6.7b', '--predictor_path', 'checkpoints/predictor', '--output_dir', './output/opt-6.7b_1024', '--max_steps', '2400', '--per_device_train_batch_size', '1', '--per_device_eval_batch_size', '1', '--gradient_accumulation_steps', '1', '--save_strategy', 'steps', '--save_steps', '400', '--save_total_limit', '10', '--learning_rate', '2e-5', '--weight_decay', '0.0', '--warmup_steps', '20', '--lr_scheduler_type', 'constant_with_warmup', '--adam_beta1', '0.9', '--adam_beta2', '0.95', '--bf16', '--model_max_length', '1024', '--flash_attention', 'True', '--pool_size', '64', '--thresh', '0.4', '--deepspeed', 'src/experiment/scalability/ds_config/stage2.json', '--gradient_checkpoint', 'True']
+[2025-05-11 23:02:21,476] [INFO] [launch.py:253:main] process 75944 spawned with command: ['/root/miniconda3/bin/python', '-u', 'src/experiment/scalability/time.py', '--local_rank=2', '--model_name_or_path', 'checkpoints/opt-6.7b', '--predictor_path', 'checkpoints/predictor', '--output_dir', './output/opt-6.7b_1024', '--max_steps', '2400', '--per_device_train_batch_size', '1', '--per_device_eval_batch_size', '1', '--gradient_accumulation_steps', '1', '--save_strategy', 'steps', '--save_steps', '400', '--save_total_limit', '10', '--learning_rate', '2e-5', '--weight_decay', '0.0', '--warmup_steps', '20', '--lr_scheduler_type', 'constant_with_warmup', '--adam_beta1', '0.9', '--adam_beta2', '0.95', '--bf16', '--model_max_length', '1024', '--flash_attention', 'True', '--pool_size', '64', '--thresh', '0.4', '--deepspeed', 'src/experiment/scalability/ds_config/stage2.json', '--gradient_checkpoint', 'True']
+[2025-05-11 23:02:21,477] [INFO] [launch.py:253:main] process 75945 spawned with command: ['/root/miniconda3/bin/python', '-u', 'src/experiment/scalability/time.py', '--local_rank=3', '--model_name_or_path', 'checkpoints/opt-6.7b', '--predictor_path', 'checkpoints/predictor', '--output_dir', './output/opt-6.7b_1024', '--max_steps', '2400', '--per_device_train_batch_size', '1', '--per_device_eval_batch_size', '1', '--gradient_accumulation_steps', '1', '--save_strategy', 'steps', '--save_steps', '400', '--save_total_limit', '10', '--learning_rate', '2e-5', '--weight_decay', '0.0', '--warmup_steps', '20', '--lr_scheduler_type', 'constant_with_warmup', '--adam_beta1', '0.9', '--adam_beta2', '0.95', '--bf16', '--model_max_length', '1024', '--flash_attention', 'True', '--pool_size', '64', '--thresh', '0.4', '--deepspeed', 'src/experiment/scalability/ds_config/stage2.json', '--gradient_checkpoint', 'True']
+[2025-05-11 23:02:25,158] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 23:02:25,168] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 23:02:25,202] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 23:02:25,204] [INFO] [real_accelerator.py:191:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-05-11 23:02:25,460] [INFO] [comm.py:637:init_distributed] cdb=None
+[2025-05-11 23:02:25,466] [INFO] [comm.py:637:init_distributed] cdb=None
+[2025-05-11 23:02:25,467] [INFO] [comm.py:668:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2025-05-11 23:02:25,497] [INFO] [comm.py:637:init_distributed] cdb=None
+[2025-05-11 23:02:25,510] [INFO] [comm.py:637:init_distributed] cdb=None
+total time: 1324.4315185546875
+total time: 1327.8951416015625total time: 1324.319091796875
+
+total time: 844.0789184570312
+total time: 433.7496032714844
+total time: 434.0245361328125
+total time: 432.81109619140625
+total time: 438.49041748046875
+total time: 441.6936340332031
+total time: 441.4013977050781total time: 440.980712890625
+
+total time: 434.3744812011719
+total time: 431.6374206542969total time: 431.8757629394531
+
+total time: 431.8493347167969total time: 431.9349060058594
+
+[2025-05-11 23:05:55,725] [INFO] [launch.py:348:main] Process 75942 exits successfully.
+[2025-05-11 23:05:55,726] [INFO] [launch.py:348:main] Process 75945 exits successfully.
+[2025-05-11 23:05:55,726] [INFO] [launch.py:348:main] Process 75943 exits successfully.
+[2025-05-11 23:05:55,726] [INFO] [launch.py:348:main] Process 75944 exits successfully.
