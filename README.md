@@ -174,15 +174,15 @@ We provide two types of scripts in this section:
  
 - **Separate Execution:** These scripts allow you to selectively reproduce the experiments you are interested in, which is more flexible.
 
-**Note:** Before getting started, please run the command below because the following experiments are conducted on a single GPU.
+**Note:** Except scalability experiment, please run the command below because the following experiments are conducted on a single GPU.
 
 ```
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=0 # Except scalability experiment
 ```
 
 #### 3.1 One-step Execution
 
-> **Hardware requirements: 1 NVIDIA A800 GPU or 1 NVIDIA A40 GPU.**
+> **Hardware requirements: 1 NVIDIA A800 GPU or 1 NVIDIA A40 GPU or 4 NVIDIA 4090 GPU.**
 >
 > **Estimated Time: about 5 hours.**
 
@@ -238,4 +238,4 @@ You can reproduce the experiments seperately based on your interests.
 | output_figures/extension/offload          | Figure 19 (Lower) | scripts/extension-offload/run.sh      | 30 mins  |
 |output_figures/scalability | Figure 20 | scripts/scalability/run.sh (4x4090)| 30mins|
 | logs/end2end/accuracy/longbench          | Table 6 | scripts/end2end-longbench/run.sh      | 3 hours  |
-| logs/end2end/accuracy          | Table 7 | scripts/end2end-ppl/ppl.sh      | 3 hours  |
+| logs/end2end/accuracy          | Table 7 | scripts/end2end-ppl/ppl.sh      | 6 hours  |
