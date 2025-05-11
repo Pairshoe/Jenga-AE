@@ -193,6 +193,8 @@ To reproduce all the experiment figures in the paper, execute the following two 
 bash RUNME-b-a800.sh  # Hardware requirements: 1 NVIDIA A800 GPU
 
 bash RUNME-b-a40.sh   # Hardware requirements: 1 NVIDIA A40 GPU
+
+bash RUNME-b-4x4090.sh # Hardware requirements: 4 NVIDIA 4090 GPU
 ```
 
 Once you have successfully run these commands, all the figures will be stored in the directory `output_figures/`.
@@ -234,6 +236,6 @@ You can reproduce the experiments seperately based on your interests.
 | output_figures/ablations/segment          | Figure 18 (Drag to [memory_viz](https://docs.pytorch.org/memory_viz)) | scripts/ablation-segment/run.sh           | 5 mins  |
 | output_figures/extension/2d               | Figure 19 (Upper) | scripts/extension-2d/run.sh           | 25 mins  |
 | output_figures/extension/offload          | Figure 19 (Lower) | scripts/extension-offload/run.sh      | 30 mins  |
-|output_figures/scalability | Figure 20 | scripts/scalability/run.sh| 30mins|
+|output_figures/scalability | Figure 20 | scripts/scalability/run.sh (4x4090)| 30mins|
 | logs/end2end/accuracy/longbench          | Table 6 | scripts/end2end-longbench/run.sh      | 3 hours  |
 | logs/end2end/accuracy          | Table 7 | scripts/end2end-ppl/ppl.sh      | 3 hours  |
