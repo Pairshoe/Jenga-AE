@@ -76,7 +76,7 @@ checkpoints/
 
 ### 2. Datasets
 
-Please download the datasets `dataset.zip` from [Datasets Link](https://cloud.tsinghua.edu.cn/f/d7ac0d22f4ec4faaa547/?dl=1), unzip the folder and place it in the **project root directory**.
+Please download the datasets `dataset.zip` from [Datasets Link](https://cloud.tsinghua.edu.cn/f/cf0998a504394dd5b368/), unzip the folder and place it in the **project root directory**.
 
 The ideal file structure is shown below. 
 
